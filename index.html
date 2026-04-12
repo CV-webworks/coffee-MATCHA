@@ -19,12 +19,13 @@
 
         :root {
             --matcha: #88B04B;
-            --matcha-light: #a8c98f;
+            --matcha-light: #9ec45f;
             --matcha-dark: #6B8E3C;
-            --matcha-ultra-light: #d4e5c4;
-            --beige: #F8F6F0;
-            --beige-dark: #EBE8DD;
-            --beige-darker: #D9D5C8;
+            --matcha-ultra-light: #c8dfa8;
+            --beige: #F5F3EE;
+            --beige-dark: #E8E5DF;
+            --beige-darker: #D4CFC5;
+            --off-white: #FAFAF8;
             --text-primary: #2A2A2A;
             --text-secondary: #5A5A5A;
             --text-light: #8A8A8A;
@@ -36,7 +37,8 @@
             --beige: #1A1A1A;
             --beige-dark: #252525;
             --beige-darker: #303030;
-            --text-primary: #F8F6F0;
+            --off-white: #2A2A2A;
+            --text-primary: #F5F3EE;
             --text-secondary: #C8C6C0;
             --text-light: #A8A6A0;
             --white: #2A2A2A;
@@ -44,7 +46,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--beige);
+            background: var(--off-white);
             color: var(--text-primary);
             overflow-x: hidden;
             transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -55,7 +57,7 @@
         .loading-screen {
             position: fixed;
             inset: 0;
-            background: linear-gradient(135deg, var(--beige) 0%, var(--beige-dark) 100%);
+            background: linear-gradient(135deg, var(--off-white) 0%, var(--beige) 100%);
             z-index: 10000;
             display: flex;
             align-items: center;
@@ -164,7 +166,7 @@
         }
 
         nav.scrolled {
-            background: rgba(248, 246, 240, 0.95);
+            background: rgba(250, 250, 248, 0.95);
             backdrop-filter: blur(20px);
             padding: 1.2rem 5%;
             box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
@@ -297,21 +299,11 @@
             overflow: hidden;
         }
 
-        .hero-video::after {
-            content: '';
-            position: absolute;
-            inset: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            pointer-events: none;
-            z-index: 2;
-            border-radius: 2px;
-        }
-
         .hero-video iframe {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%) scale(1.02);
             width: 100vw;
             height: 56.25vw;
             min-height: 100vh;
@@ -553,7 +545,7 @@
 
         /* About Section */
         .about {
-            background: var(--white);
+            background: var(--off-white);
         }
 
         .about-content {
@@ -609,7 +601,7 @@
 
         .stat-item:hover {
             transform: translateX(10px);
-            background: var(--white);
+            background: var(--off-white);
         }
 
         .stat-number {
@@ -641,7 +633,7 @@
         }
 
         .menu-card {
-            background: var(--white);
+            background: var(--off-white);
             padding: 3rem;
             border: 1px solid var(--beige-darker);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -710,7 +702,7 @@
 
         /* Gallery Section */
         .gallery {
-            background: var(--white);
+            background: var(--off-white);
             padding: 8rem 0;
             overflow: hidden;
         }
@@ -740,6 +732,7 @@
             position: relative;
             overflow: hidden;
             transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--beige-darker);
         }
 
         .gallery-item::before {
@@ -824,7 +817,7 @@
         .review-card {
             flex-shrink: 0;
             width: 420px;
-            background: var(--white);
+            background: var(--off-white);
             padding: 3rem;
             border: 1px solid var(--beige-darker);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -888,7 +881,7 @@
 
         /* Features Section */
         .features {
-            background: var(--white);
+            background: var(--off-white);
         }
 
         .features-grid {
@@ -927,7 +920,7 @@
 
         .feature-card:hover {
             transform: translateY(-8px);
-            background: var(--white);
+            background: var(--off-white);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
         }
 
@@ -1051,7 +1044,7 @@
 
         .footer-section p,
         .footer-section a {
-            color: rgba(248, 246, 240, 0.7);
+            color: rgba(245, 243, 238, 0.7);
             line-height: 2;
             text-decoration: none;
             display: block;
@@ -1066,7 +1059,7 @@
 
         .footer-bottom {
             padding-top: 2rem;
-            border-top: 1px solid rgba(248, 246, 240, 0.1);
+            border-top: 1px solid rgba(245, 243, 238, 0.1);
             text-align: center;
             opacity: 0.5;
             font-size: 0.9rem;
@@ -1256,7 +1249,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-video">
-            <iframe src="https://streamable.com/e/r0rjnw?autoplay=1&nocontrols=1&loop=1&muted=1" allowfullscreen allow="autoplay"></iframe>
+            <iframe src="https://streamable.com/e/r0rjnw?autoplay=1&loop=0" frameborder="0" allowfullscreen allow="autoplay; fullscreen"></iframe>
         </div>
         <div class="hero-content">
             <div class="hero-eyebrow">New Barnet, North London</div>
