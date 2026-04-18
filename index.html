@@ -6,1439 +6,1668 @@
 <title>Coffee & Matcha — New Barnet, North London</title>
 <meta name="description" content="Specialty coffee and ceremonial matcha in the heart of New Barnet, North London. A calm, considered space for those who appreciate the craft.">
 <style>
-  /* ============================================
-     TOKENS & VARIABLES
-  ============================================ */
-  :root {
-    --matcha: #5C7A4E;
-    --matcha-light: #7A9E6A;
-    --matcha-dark: #3D5235;
-    --matcha-muted: #8FAF7E;
-    --cream: #F7F3EE;
-    --cream-warm: #F0EBE3;
-    --cream-deep: #E8E0D5;
-    --ink: #1A1A18;
-    --ink-soft: #2E2E2A;
-    --ink-muted: #5A5A52;
-    --ink-faint: #8A8A80;
-    --white: #FDFCFA;
-    --shadow-soft: 0 4px 32px rgba(26,26,24,0.08);
-    --shadow-card: 0 8px 48px rgba(26,26,24,0.12);
-    --shadow-lift: 0 16px 64px rgba(26,26,24,0.16);
-    --radius-sm: 8px;
-    --radius-md: 16px;
-    --radius-lg: 24px;
-    --radius-xl: 40px;
-    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slow: 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-elastic: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    --font-display: 'Georgia', 'Times New Roman', serif;
-    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    --bg-primary: var(--cream);
-    --bg-secondary: var(--cream-warm);
-    --bg-card: var(--white);
-    --text-primary: var(--ink);
-    --text-secondary: var(--ink-soft);
-    --text-muted: var(--ink-muted);
-    --text-faint: var(--ink-faint);
-    --border: rgba(26,26,24,0.08);
-    --nav-bg: rgba(247,243,238,0.92);
-  }
+/* ============================================================
+   DESIGN TOKENS
+============================================================ */
+:root {
+  --matcha:        #5C7A4E;
+  --matcha-light:  #7A9E6A;
+  --matcha-dark:   #3D5235;
+  --matcha-muted:  #8FAF7E;
+  --matcha-pale:   #E8F0E4;
+  --cream:         #F7F3EE;
+  --cream-warm:    #F0EBE3;
+  --cream-deep:    #E4DDD3;
+  --ink:           #1A1A18;
+  --ink-soft:      #2E2E2A;
+  --ink-muted:     #5A5A52;
+  --ink-faint:     #9A9A90;
+  --white:         #FDFCFA;
 
-  [data-theme="dark"] {
-    --bg-primary: #141410;
-    --bg-secondary: #1C1C18;
-    --bg-card: #222220;
-    --text-primary: #F0EBE3;
-    --text-secondary: #D4CFC8;
-    --text-muted: #9A9A90;
-    --text-faint: #6A6A60;
-    --border: rgba(240,235,227,0.08);
-    --nav-bg: rgba(20,20,16,0.92);
-    --shadow-soft: 0 4px 32px rgba(0,0,0,0.3);
-    --shadow-card: 0 8px 48px rgba(0,0,0,0.4);
-    --shadow-lift: 0 16px 64px rgba(0,0,0,0.5);
-    --cream: #141410;
-    --cream-warm: #1C1C18;
-    --white: #222220;
-  }
+  /* Semantic tokens */
+  --bg:            var(--cream);
+  --bg-alt:        var(--cream-warm);
+  --bg-card:       var(--white);
+  --text:          var(--ink);
+  --text-2:        var(--ink-soft);
+  --text-3:        var(--ink-muted);
+  --text-4:        var(--ink-faint);
+  --border:        rgba(26,26,24,0.07);
+  --border-strong: rgba(26,26,24,0.14);
+  --nav-bg:        rgba(247,243,238,0.88);
 
-  /* ============================================
-     RESET & BASE
-  ============================================ */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  /* Shadows */
+  --sh-xs:  0 2px 8px rgba(26,26,24,0.06);
+  --sh-sm:  0 4px 24px rgba(26,26,24,0.08);
+  --sh-md:  0 8px 48px rgba(26,26,24,0.11);
+  --sh-lg:  0 20px 80px rgba(26,26,24,0.14);
+  --sh-xl:  0 32px 120px rgba(26,26,24,0.18);
+  --sh-matcha: 0 12px 48px rgba(92,122,78,0.25);
 
-  html {
-    scroll-behavior: smooth;
-    font-size: 16px;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+  /* Radii */
+  --r-sm: 6px;
+  --r-md: 14px;
+  --r-lg: 22px;
+  --r-xl: 40px;
+  --r-full: 9999px;
 
-  body {
-    font-family: var(--font-body);
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    transition: background var(--transition-slow), color var(--transition-slow);
-    overflow-x: hidden;
-  }
+  /* Easings */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-elastic:  cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-spring:   cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-  img { display: block; max-width: 100%; }
-  a { text-decoration: none; color: inherit; }
+  /* Typography */
+  --font-serif: 'Georgia', 'Times New Roman', serif;
+  --font-sans:  -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
 
-  /* ============================================
-     NAVIGATION
-  ============================================ */
-  .nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    padding: 24px 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: padding var(--transition-smooth), background var(--transition-smooth), backdrop-filter var(--transition-smooth), box-shadow var(--transition-smooth);
-  }
+  /* Spacing scale */
+  --s-1:   4px;
+  --s-2:   8px;
+  --s-3:   12px;
+  --s-4:   16px;
+  --s-5:   24px;
+  --s-6:   32px;
+  --s-7:   48px;
+  --s-8:   64px;
+  --s-9:   96px;
+  --s-10:  128px;
+  --s-11:  160px;
+}
 
-  .nav.scrolled {
-    padding: 16px 48px;
-    background: var(--nav-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow: 0 1px 0 var(--border);
-  }
+[data-theme="dark"] {
+  --bg:            #111110;
+  --bg-alt:        #191917;
+  --bg-card:       #1F1F1D;
+  --text:          #EDE8E1;
+  --text-2:        #C8C3BB;
+  --text-3:        #8A8A80;
+  --text-4:        #5A5A52;
+  --border:        rgba(237,232,225,0.07);
+  --border-strong: rgba(237,232,225,0.13);
+  --nav-bg:        rgba(17,17,16,0.88);
+  --matcha-pale:   rgba(92,122,78,0.12);
+  --sh-xs:  0 2px 8px rgba(0,0,0,0.25);
+  --sh-sm:  0 4px 24px rgba(0,0,0,0.35);
+  --sh-md:  0 8px 48px rgba(0,0,0,0.45);
+  --sh-lg:  0 20px 80px rgba(0,0,0,0.55);
+  --sh-xl:  0 32px 120px rgba(0,0,0,0.65);
+  --sh-matcha: 0 12px 48px rgba(92,122,78,0.18);
+  --white: #1F1F1D;
+}
 
-  .nav-logo {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 400;
-    letter-spacing: 0.02em;
-    color: var(--text-primary);
-    transition: opacity var(--transition-fast);
-  }
+/* ============================================================
+   RESET + BASE
+============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  .nav-logo span {
-    color: var(--matcha);
-    font-style: italic;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
 
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    list-style: none;
-  }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.6s var(--ease-in-out), color 0.6s var(--ease-in-out);
+  overflow-x: hidden;
+  line-height: 1;
+}
 
-  .nav-links a {
-    font-size: 0.875rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    transition: color var(--transition-fast);
-    position: relative;
-  }
+img { display: block; max-width: 100%; }
+a  { text-decoration: none; color: inherit; }
+button { font-family: inherit; }
 
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--matcha);
-    transition: width var(--transition-smooth);
-  }
+/* Grain texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.022;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: multiply;
+}
 
-  .nav-links a:hover { color: var(--text-primary); }
-  .nav-links a:hover::after { width: 100%; }
+[data-theme="dark"] body::before { opacity: 0.04; mix-blend-mode: screen; }
 
-  .nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-alt); }
+::-webkit-scrollbar-thumb { background: var(--matcha-muted); border-radius: var(--r-full); }
 
-  .theme-toggle {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid var(--border);
-    background: transparent;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all var(--transition-fast);
-    color: var(--text-muted);
-  }
+/* ============================================================
+   SCROLL PROGRESS BAR
+============================================================ */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--matcha), var(--matcha-light));
+  z-index: 2000;
+  transform-origin: left;
+  transition: width 0.1s linear;
+}
 
-  .theme-toggle:hover {
-    background: var(--bg-card);
-    color: var(--text-primary);
-    transform: scale(1.05);
-  }
+/* ============================================================
+   NAVIGATION
+============================================================ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: var(--s-7) var(--s-9);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: padding 0.5s var(--ease-out-expo),
+              background 0.5s var(--ease-out-expo),
+              backdrop-filter 0.5s var(--ease-out-expo),
+              box-shadow 0.5s var(--ease-out-expo);
+}
 
-  .nav-cta {
-    padding: 10px 24px;
-    background: var(--matcha);
-    color: #fff;
-    border-radius: 100px;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    transition: all var(--transition-fast);
-    border: none;
-    cursor: pointer;
-  }
+.nav.scrolled {
+  padding: var(--s-4) var(--s-9);
+  background: var(--nav-bg);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  box-shadow: 0 1px 0 var(--border), var(--sh-xs);
+}
 
-  .nav-cta:hover {
-    background: var(--matcha-dark);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(92,122,78,0.3);
-  }
+.nav-logo {
+  font-family: var(--font-serif);
+  font-size: 1.1875rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
 
-  /* Mobile Nav Toggle */
-  .nav-hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    padding: 4px;
-    background: none;
-    border: none;
-  }
+.nav-logo-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--matcha);
+  flex-shrink: 0;
+  animation: pulse-dot 3s ease-in-out infinite;
+}
 
-  .nav-hamburger span {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background: var(--text-primary);
-    transition: all var(--transition-smooth);
-    transform-origin: center;
-  }
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.4); opacity: 0.7; }
+}
 
-  /* ============================================
-     HERO SECTION
-  ============================================ */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    position: relative;
-    overflow: hidden;
-  }
+.nav-logo em { font-style: italic; color: var(--matcha); }
 
-  .hero-image-panel {
-    position: relative;
-    overflow: hidden;
-  }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--s-8);
+  list-style: none;
+}
 
-  .hero-image-panel img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-  }
+.nav-links a {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  transition: color 0.25s var(--ease-in-out);
+  position: relative;
+  padding-bottom: 3px;
+}
 
-  .hero-content-panel {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 120px 72px 80px 72px;
-    background: var(--bg-primary);
-    position: relative;
-    z-index: 2;
-  }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 1px;
+  background: var(--matcha);
+  transition: width 0.35s var(--ease-out-expo);
+}
 
-  .hero-eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 32px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeUp 0.8s cubic-bezier(0.4,0,0.2,1) 0.3s forwards;
-  }
+.nav-links a:hover { color: var(--text); }
+.nav-links a:hover::after { width: 100%; }
 
-  .hero-eyebrow-line {
-    width: 32px;
-    height: 1px;
-    background: var(--matcha);
-  }
+.nav-actions { display: flex; align-items: center; gap: var(--s-3); }
 
-  .hero-eyebrow-text {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--matcha);
-  }
+.theme-toggle {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-3);
+  transition: all 0.25s var(--ease-in-out);
+}
 
-  .hero-title {
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 5vw, 5rem);
-    font-weight: 400;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
-    margin-bottom: 28px;
-    opacity: 0;
-    transform: translateY(24px);
-    animation: fadeUp 0.9s cubic-bezier(0.4,0,0.2,1) 0.5s forwards;
-  }
+.theme-toggle:hover {
+  background: var(--bg-card);
+  color: var(--text);
+  border-color: var(--matcha);
+  transform: rotate(20deg);
+}
 
-  .hero-title em {
-    font-style: italic;
-    color: var(--matcha);
-  }
+.nav-cta {
+  padding: 10px 22px;
+  background: var(--matcha);
+  color: #fff;
+  border-radius: var(--r-full);
+  font-size: 0.78125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-elastic);
+  position: relative;
+  overflow: hidden;
+}
 
-  .hero-subtitle {
-    font-size: 1.0625rem;
-    line-height: 1.7;
-    color: var(--text-muted);
-    max-width: 400px;
-    margin-bottom: 48px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeUp 0.8s cubic-bezier(0.4,0,0.2,1) 0.7s forwards;
-  }
+.nav-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.15);
+  transform: translateX(-100%);
+  transition: transform 0.4s var(--ease-out-expo);
+}
 
-  .hero-buttons {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeUp 0.8s cubic-bezier(0.4,0,0.2,1) 0.9s forwards;
-  }
+.nav-cta:hover::before { transform: translateX(0); }
+.nav-cta:hover { transform: translateY(-2px); box-shadow: var(--sh-matcha); }
 
-  .btn-primary {
-    padding: 16px 36px;
-    background: var(--matcha);
-    color: #fff;
-    border-radius: 100px;
-    font-size: 0.9375rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    transition: all var(--transition-elastic);
-    border: none;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
+/* Hamburger */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--s-2);
+}
 
-  .btn-primary:hover {
-    background: var(--matcha-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(92,122,78,0.35);
-  }
+.nav-hamburger span {
+  display: block;
+  width: 22px; height: 1.5px;
+  background: var(--text);
+  transition: all 0.4s var(--ease-out-expo);
+  transform-origin: center;
+}
 
-  .btn-primary:active { transform: translateY(0); }
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-  .btn-secondary {
-    padding: 16px 36px;
-    background: transparent;
-    color: var(--text-primary);
-    border-radius: 100px;
-    font-size: 0.9375rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    border: 1.5px solid var(--border);
-    transition: all var(--transition-smooth);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
+/* Mobile Menu */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-7);
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.6s var(--ease-out-expo), opacity 0.4s var(--ease-in-out);
+  pointer-events: none;
+}
 
-  .btn-secondary:hover {
-    border-color: var(--matcha);
-    color: var(--matcha);
-    transform: translateY(-2px);
-  }
+.mobile-menu.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
 
-  .hero-meta {
-    margin-top: 64px;
-    padding-top: 40px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    gap: 40px;
-    opacity: 0;
-    transform: translateY(16px);
-    animation: fadeUp 0.8s cubic-bezier(0.4,0,0.2,1) 1.1s forwards;
-  }
+.mobile-menu a {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  font-weight: 400;
+  color: var(--text);
+  transition: color 0.2s, transform 0.3s var(--ease-elastic);
+  display: inline-block;
+}
 
-  .hero-meta-item {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
+.mobile-menu a:hover { color: var(--matcha); transform: translateX(12px); }
 
-  .hero-meta-label {
-    font-size: 0.6875rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-faint);
-  }
+.mobile-menu-close {
+  position: absolute;
+  top: var(--s-5); right: var(--s-5);
+  background: none; border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: var(--text-3);
+  width: 48px; height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s var(--ease-in-out);
+}
 
-  .hero-meta-value {
-    font-size: 0.9375rem;
-    font-weight: 500;
-    color: var(--text-primary);
-  }
+.mobile-menu-close:hover { background: var(--bg-alt); color: var(--text); }
 
-  /* ============================================
-     SECTION SHARED
-  ============================================ */
-  .section {
-    padding: 120px 0;
-  }
+/* ============================================================
+   HERO
+============================================================ */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
 
-  .section-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 48px;
-  }
+/* Exactly 50% — untouched image */
+.hero-image-panel {
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+}
 
-  .section-label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 24px;
-  }
+.hero-image-panel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
 
-  .section-label-line {
-    width: 24px;
-    height: 1px;
-    background: var(--matcha);
-    flex-shrink: 0;
-  }
+/* Content side */
+.hero-content-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 140px var(--s-10) var(--s-10) var(--s-9);
+  background: var(--bg);
+  position: relative;
+  z-index: 2;
+}
 
-  .section-label-text {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--matcha);
-  }
+/* Vertical rule divider */
+.hero-content-panel::before {
+  content: '';
+  position: absolute;
+  top: 20%; bottom: 20%;
+  left: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--border-strong), transparent);
+}
 
-  .section-title {
-    font-family: var(--font-display);
-    font-size: clamp(2.25rem, 4vw, 3.75rem);
-    font-weight: 400;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
-  }
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-bottom: var(--s-7);
+  opacity: 0;
+  transform: translateY(16px);
+  animation: heroReveal 0.9s var(--ease-out-expo) 0.2s forwards;
+}
 
-  .section-title em {
-    font-style: italic;
-    color: var(--matcha);
-  }
+.hero-tag-pip {
+  width: 28px; height: 1px;
+  background: var(--matcha);
+  flex-shrink: 0;
+}
 
-  /* Reveal animation */
-  .reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
-  }
+.hero-tag-text {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--matcha);
+}
 
-  .reveal.visible {
+.hero-h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(3.25rem, 5.5vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin-bottom: var(--s-6);
+  opacity: 0;
+  transform: translateY(24px);
+  animation: heroReveal 1s var(--ease-out-expo) 0.4s forwards;
+}
+
+.hero-h1 em {
+  font-style: italic;
+  color: var(--matcha);
+  display: block;
+}
+
+.hero-sub {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--text-3);
+  max-width: 380px;
+  margin-bottom: var(--s-8);
+  opacity: 0;
+  transform: translateY(18px);
+  animation: heroReveal 0.9s var(--ease-out-expo) 0.6s forwards;
+}
+
+.hero-btns {
+  display: flex;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(14px);
+  animation: heroReveal 0.9s var(--ease-out-expo) 0.75s forwards;
+}
+
+/* Magnetic buttons */
+.btn-mag {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: box-shadow 0.35s var(--ease-out-expo);
+  overflow: hidden;
+  will-change: transform;
+}
+
+.btn-mag::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.12);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.btn-mag:hover::after { opacity: 1; }
+
+.btn-primary-mag {
+  padding: 17px 40px;
+  background: var(--matcha);
+  color: #fff;
+  border-radius: var(--r-full);
+  font-size: 0.9375rem;
+}
+
+.btn-primary-mag:hover { box-shadow: var(--sh-matcha); }
+
+.btn-outline-mag {
+  padding: 16px 36px;
+  background: transparent;
+  color: var(--text);
+  border-radius: var(--r-full);
+  border: 1.5px solid var(--border-strong);
+  font-size: 0.9375rem;
+}
+
+.btn-outline-mag:hover {
+  border-color: var(--matcha);
+  color: var(--matcha);
+}
+
+.hero-meta {
+  margin-top: var(--s-9);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: var(--s-8);
+  opacity: 0;
+  transform: translateY(12px);
+  animation: heroReveal 0.8s var(--ease-out-expo) 1s forwards;
+}
+
+.hero-meta-item { display: flex; flex-direction: column; gap: 5px; }
+
+.hero-meta-label {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+
+.hero-meta-value {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* Large background numeral */
+.hero-numeral {
+  position: absolute;
+  right: -0.1em;
+  bottom: -0.15em;
+  font-family: var(--font-serif);
+  font-size: 22vw;
+  font-weight: 400;
+  font-style: italic;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--border);
+  text-stroke: 1px var(--border);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  animation: heroReveal 1.2s var(--ease-out-expo) 1.2s forwards;
+}
+
+@keyframes heroReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   SHARED SECTION PRIMITIVES
+============================================================ */
+.s-wrap {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 var(--s-9);
+}
+
+.section-tag {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-bottom: var(--s-5);
+}
+
+.section-tag-line {
+  width: 20px; height: 1px;
+  background: var(--matcha);
+  flex-shrink: 0;
+}
+
+.section-tag-text {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--matcha);
+}
+
+.s-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-weight: 400;
+  line-height: 1.06;
+  letter-spacing: -0.022em;
+  color: var(--text);
+}
+
+.s-heading em { font-style: italic; color: var(--matcha); }
+
+/* Clip-path reveal system */
+.reveal-clip {
+  clip-path: inset(0 0 100% 0);
+  opacity: 0;
+  transition:
+    clip-path 0.9s var(--ease-out-expo),
+    opacity   0.6s var(--ease-out-expo);
+}
+
+.reveal-up {
+  opacity: 0;
+  transform: translateY(48px);
+  transition:
+    opacity   0.85s var(--ease-out-expo),
+    transform 0.85s var(--ease-out-expo);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition:
+    opacity   0.85s var(--ease-out-expo),
+    transform 0.85s var(--ease-out-expo);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition:
+    opacity   0.85s var(--ease-out-expo),
+    transform 0.85s var(--ease-out-expo);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.94);
+  transition:
+    opacity   0.8s var(--ease-out-expo),
+    transform 0.8s var(--ease-out-expo);
+}
+
+.visible.reveal-clip {
+  clip-path: inset(0 0 0% 0);
+  opacity: 1;
+}
+
+.visible.reveal-up, .visible.reveal-left,
+.visible.reveal-right, .visible.reveal-scale {
+  opacity: 1;
+  transform: none;
+}
+
+.d-1 { transition-delay: 0.08s !important; }
+.d-2 { transition-delay: 0.16s !important; }
+.d-3 { transition-delay: 0.24s !important; }
+.d-4 { transition-delay: 0.32s !important; }
+.d-5 { transition-delay: 0.40s !important; }
+.d-6 { transition-delay: 0.48s !important; }
+.d-7 { transition-delay: 0.56s !important; }
+.d-8 { transition-delay: 0.64s !important; }
+
+/* ============================================================
+   ABOUT
+============================================================ */
+.about {
+  padding: var(--s-11) 0;
+  background: var(--bg-alt);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Large decorative word */
+.about-deco {
+  position: absolute;
+  top: 50%;
+  left: -0.05em;
+  transform: translateY(-50%);
+  font-family: var(--font-serif);
+  font-size: clamp(8rem, 18vw, 18rem);
+  font-weight: 400;
+  font-style: italic;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--border);
+  text-stroke: 1px var(--border);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 5fr 4fr;
+  gap: var(--s-10);
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.about-h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.75rem, 4.5vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin-bottom: var(--s-6);
+}
+
+.about-h2 em { font-style: italic; color: var(--matcha); }
+
+.about-body {
+  font-size: 1.0625rem;
+  line-height: 1.78;
+  color: var(--text-3);
+  margin-bottom: var(--s-5);
+  max-width: 520px;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin-top: var(--s-8);
+  background: var(--border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+
+.about-stat {
+  background: var(--bg-card);
+  padding: var(--s-6) var(--s-5);
+  text-align: center;
+  transition: background 0.3s;
+}
+
+.about-stat:hover { background: var(--matcha-pale); }
+
+.about-stat-num {
+  font-family: var(--font-serif);
+  font-size: 2.75rem;
+  font-weight: 400;
+  color: var(--matcha);
+  line-height: 1;
+  margin-bottom: var(--s-2);
+  display: block;
+}
+
+.about-stat-lbl {
+  font-size: 0.75rem;
+  color: var(--text-3);
+  line-height: 1.45;
+}
+
+/* Image stack */
+.about-visual { position: relative; }
+
+.about-img-stack {
+  position: relative;
+  height: 580px;
+}
+
+.about-img-a {
+  position: absolute;
+  top: 0; left: 0;
+  width: 80%; height: 87%;
+  object-fit: cover;
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-md);
+  transition: transform 0.6s var(--ease-out-expo);
+}
+
+.about-img-b {
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 54%; height: 56%;
+  object-fit: cover;
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-lg);
+  border: 5px solid var(--bg-alt);
+  transition: transform 0.6s var(--ease-out-expo);
+}
+
+.about-visual:hover .about-img-a { transform: scale(1.02) translateY(-4px); }
+.about-visual:hover .about-img-b { transform: scale(1.03) translate(-4px, -6px); }
+
+.about-badge {
+  position: absolute;
+  bottom: 44%;
+  left: -28px;
+  background: var(--matcha-dark);
+  color: #fff;
+  padding: var(--s-5) var(--s-6);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-md);
+  z-index: 4;
+  text-align: center;
+  min-width: 90px;
+}
+
+.about-badge-ico { font-size: 1.5rem; margin-bottom: var(--s-2); }
+
+.about-badge-txt {
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   MENU
+============================================================ */
+.menu { padding: var(--s-11) 0; background: var(--bg); }
+
+.menu-top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: var(--s-8);
+  margin-bottom: var(--s-9);
+}
+
+.menu-tabs {
+  display: flex;
+  gap: 3px;
+  background: var(--bg-alt);
+  border-radius: var(--r-full);
+  padding: 4px;
+  margin-top: var(--s-6);
+  width: fit-content;
+}
+
+.menu-tab {
+  padding: 10px 26px;
+  border-radius: var(--r-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: var(--text-3);
+  transition: all 0.35s var(--ease-out-expo);
+}
+
+.menu-tab.active {
+  background: var(--bg-card);
+  color: var(--text);
+  box-shadow: var(--sh-xs);
+}
+
+.menu-tab:hover:not(.active) { color: var(--text); }
+
+.menu-desc-right {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--text-3);
+  max-width: 280px;
+  text-align: right;
+}
+
+/* Menu grid */
+.menu-panel { display: none; }
+
+.menu-panel.active {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--border);
+}
+
+.menu-card {
+  background: var(--bg-card);
+  padding: var(--s-7) var(--s-6);
+  cursor: default;
+  transition: background 0.4s var(--ease-out-expo),
+              transform  0.4s var(--ease-out-expo),
+              box-shadow 0.4s var(--ease-out-expo),
+              z-index    0s;
+  position: relative;
+  z-index: 1;
+}
+
+.menu-card:hover {
+  background: var(--matcha);
+  transform: scale(1.015);
+  box-shadow: var(--sh-lg);
+  z-index: 3;
+}
+
+.menu-card:hover .mc-tag  { color: rgba(255,255,255,0.65); }
+.menu-card:hover .mc-name { color: #fff; }
+.menu-card:hover .mc-desc { color: rgba(255,255,255,0.72); }
+.menu-card:hover .mc-price{ color: #fff; }
+
+.mc-tag {
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--matcha);
+  margin-bottom: var(--s-3);
+  transition: color 0.3s;
+}
+
+.mc-name {
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: var(--s-3);
+  transition: color 0.3s;
+}
+
+.mc-desc {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--text-3);
+  margin-bottom: var(--s-5);
+  transition: color 0.3s;
+}
+
+.mc-price {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text);
+  transition: color 0.3s;
+}
+
+/* ============================================================
+   GALLERY
+============================================================ */
+.gallery {
+  padding: var(--s-11) 0;
+  background: var(--bg-alt);
+  overflow: hidden;
+}
+
+.gallery-top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  margin-bottom: var(--s-8);
+  gap: var(--s-8);
+}
+
+.gallery-hint {
+  font-size: 0.8125rem;
+  color: var(--text-4);
+  text-align: right;
+  line-height: 1.6;
+}
+
+.gallery-track-wrap {
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+}
+
+.gallery-track-wrap:active { cursor: grabbing; }
+
+.gallery-track {
+  display: flex;
+  gap: 20px;
+  will-change: transform;
+  transition: none;
+}
+
+.gallery-item {
+  flex-shrink: 0;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  position: relative;
+}
+
+.gallery-item:nth-child(4n+1) { width: 500px; height: 620px; }
+.gallery-item:nth-child(4n+2) { width: 380px; height: 620px; }
+.gallery-item:nth-child(4n+3) { width: 440px; height: 620px; }
+.gallery-item:nth-child(4n+4) { width: 460px; height: 620px; }
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.9s var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.gallery-item:hover img { transform: scale(1.07); }
+
+.gallery-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-top: var(--s-6);
+}
+
+.gal-btn {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-strong);
+  background: var(--bg-card);
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s var(--ease-out-expo);
+}
+
+.gal-btn:hover {
+  background: var(--matcha);
+  border-color: var(--matcha);
+  color: #fff;
+  transform: scale(1.08);
+  box-shadow: var(--sh-matcha);
+}
+
+/* ============================================================
+   REVIEWS
+============================================================ */
+.reviews {
+  padding: var(--s-11) 0;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.reviews-top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  margin-bottom: var(--s-9);
+}
+
+.reviews-agg { text-align: right; }
+
+.reviews-score {
+  font-family: var(--font-serif);
+  font-size: 4rem;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1;
+}
+
+.rev-stars {
+  display: flex;
+  justify-content: flex-end;
+  gap: 3px;
+  margin: var(--s-2) 0 var(--s-2);
+}
+
+.star { color: #F4A526; font-size: 1rem; }
+
+.reviews-count {
+  font-size: 0.78125rem;
+  color: var(--text-4);
+}
+
+.reviews-mask {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+
+.reviews-track {
+  display: flex;
+  gap: var(--s-6);
+  animation: marquee 44s linear infinite;
+  width: max-content;
+}
+
+.reviews-track:hover { animation-play-state: paused; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.rv-card {
+  flex-shrink: 0;
+  width: 390px;
+  background: var(--bg-card);
+  border-radius: var(--r-lg);
+  padding: var(--s-7) var(--s-7);
+  border: 1px solid var(--border);
+  transition: transform 0.4s var(--ease-out-expo),
+              box-shadow 0.4s var(--ease-out-expo);
+}
+
+.rv-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--sh-md);
+}
+
+.rv-stars { display: flex; gap: 3px; margin-bottom: var(--s-5); }
+
+.rv-quote {
+  font-size: 1.875rem;
+  color: var(--matcha);
+  opacity: 0.25;
+  line-height: 1;
+  font-family: var(--font-serif);
+  margin-bottom: var(--s-2);
+}
+
+.rv-text {
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: var(--text-2);
+  font-style: italic;
+  margin-bottom: var(--s-6);
+}
+
+.rv-author { display: flex; align-items: center; gap: var(--s-3); }
+
+.rv-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--matcha-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.9);
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+
+.rv-name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.rv-lbl {
+  font-size: 0.72rem;
+  color: var(--text-4);
+  margin-top: 2px;
+}
+
+/* ============================================================
+   FEATURES
+============================================================ */
+.features {
+  padding: var(--s-11) 0;
+  background: var(--bg-alt);
+  position: relative;
+  overflow: hidden;
+}
+
+.features-deco {
+  position: absolute;
+  bottom: -0.1em; right: -0.05em;
+  font-family: var(--font-serif);
+  font-size: clamp(8rem, 20vw, 22rem);
+  font-weight: 400;
+  font-style: italic;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--border);
+  text-stroke: 1px var(--border);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.features-head { text-align: center; margin-bottom: var(--s-10); position: relative; z-index: 2; }
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+.feat-card {
+  background: var(--bg-card);
+  padding: var(--s-8) var(--s-6);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+.feat-card::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 0;
+  background: var(--matcha-pale);
+  transition: height 0.5s var(--ease-out-expo);
+  z-index: 0;
+}
+
+.feat-card:hover::after { height: 100%; }
+.feat-card:hover { transform: translateY(-6px); box-shadow: var(--sh-md); z-index: 2; }
+
+.feat-card > * { position: relative; z-index: 1; }
+
+.feat-ico {
+  font-size: 2rem;
+  margin-bottom: var(--s-5);
+  display: block;
+  transition: transform 0.4s var(--ease-elastic);
+}
+
+.feat-card:hover .feat-ico { transform: scale(1.2) rotate(-4deg); }
+
+.feat-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: var(--s-3);
+  letter-spacing: -0.01em;
+}
+
+.feat-desc {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--text-3);
+}
+
+/* ============================================================
+   LOCATION
+============================================================ */
+.location {
+  padding: var(--s-11) 0;
+  background: var(--bg);
+}
+
+.location-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-10);
+  align-items: start;
+}
+
+.location-map {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--sh-md);
+  height: 500px;
+  position: sticky;
+  top: 100px;
+}
+
+.location-map iframe {
+  width: 100%; height: 100%;
+  border: none; display: block;
+}
+
+.location-info { padding-top: var(--s-2); }
+
+.loc-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-5);
+  margin-bottom: var(--s-7);
+  padding-bottom: var(--s-7);
+  border-bottom: 1px solid var(--border);
+}
+
+.loc-detail:last-of-type { border-bottom: none; }
+
+.loc-ico {
+  width: 46px; height: 46px;
+  border-radius: var(--r-md);
+  background: var(--bg-alt);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  transition: background 0.3s, transform 0.3s var(--ease-elastic);
+}
+
+.loc-detail:hover .loc-ico {
+  background: var(--matcha);
+  transform: scale(1.08);
+}
+
+.loc-title {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-4);
+  margin-bottom: var(--s-2);
+}
+
+.loc-val {
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.55;
+}
+
+.hours-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  margin-top: var(--s-3);
+}
+
+.hour-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  padding: var(--s-2) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.hour-day { color: var(--text-3); }
+.hour-time { color: var(--text); font-weight: 500; }
+
+/* ============================================================
+   CTA BAND
+============================================================ */
+.cta-band {
+  background: var(--matcha-dark);
+  padding: var(--s-11) var(--s-9);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(92,122,78,0.45), transparent),
+    radial-gradient(ellipse 60% 80% at 80% 60%, rgba(61,82,53,0.5), transparent);
+  pointer-events: none;
+}
+
+/* Big italic background text */
+.cta-deco {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-serif);
+  font-size: clamp(6rem, 18vw, 20rem);
+  font-weight: 400;
+  font-style: italic;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.06);
+  text-stroke: 1px rgba(255,255,255,0.06);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+.cta-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.cta-eye {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: var(--s-5);
+}
+
+.cta-h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin-bottom: var(--s-5);
+}
+
+.cta-h2 em { font-style: italic; color: var(--matcha-muted); }
+
+.cta-sub {
+  font-size: 1.0625rem;
+  color: rgba(255,255,255,0.58);
+  line-height: 1.72;
+  margin-bottom: var(--s-8);
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-btns { display: flex; gap: var(--s-4); justify-content: center; flex-wrap: wrap; }
+
+.btn-white {
+  padding: 17px 44px;
+  background: #fff;
+  color: var(--matcha-dark);
+  border-radius: var(--r-full);
+  font-size: 0.9375rem;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s var(--ease-elastic);
+  display: inline-flex; align-items: center; gap: var(--s-2);
+}
+
+.btn-white:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 56px rgba(0,0,0,0.28);
+}
+
+.btn-ghost-w {
+  padding: 16px 40px;
+  background: transparent;
+  color: rgba(255,255,255,0.85);
+  border-radius: var(--r-full);
+  border: 1.5px solid rgba(255,255,255,0.25);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.35s var(--ease-out-expo);
+  display: inline-flex; align-items: center; gap: var(--s-2);
+}
+
+.btn-ghost-w:hover {
+  border-color: rgba(255,255,255,0.65);
+  background: rgba(255,255,255,0.08);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.footer {
+  background: #0F0F0D;
+  padding: var(--s-10) var(--s-9) var(--s-7);
+  color: rgba(237,232,225,0.38);
+}
+
+.footer-inner { max-width: 1320px; margin: 0 auto; }
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: var(--s-10);
+  padding-bottom: var(--s-9);
+  border-bottom: 1px solid rgba(237,232,225,0.07);
+  margin-bottom: var(--s-7);
+}
+
+.footer-brand { }
+
+.footer-logo {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: rgba(237,232,225,0.9);
+  margin-bottom: var(--s-4);
+  display: flex; align-items: center; gap: var(--s-2);
+}
+
+.footer-logo em { font-style: italic; color: var(--matcha-muted); }
+
+.footer-logo-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--matcha);
+  flex-shrink: 0;
+}
+
+.footer-brand-desc {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: rgba(237,232,225,0.38);
+  max-width: 280px;
+  margin-bottom: var(--s-7);
+}
+
+.footer-socials { display: flex; gap: var(--s-3); }
+
+.footer-soc {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(237,232,225,0.1);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(237,232,225,0.4);
+  font-size: 0.875rem;
+  transition: all 0.25s var(--ease-in-out);
+}
+
+.footer-soc:hover {
+  background: var(--matcha);
+  border-color: var(--matcha);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.footer-col-head {
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(237,232,225,0.7);
+  margin-bottom: var(--s-5);
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+
+.footer-links a {
+  font-size: 0.875rem;
+  color: rgba(237,232,225,0.38);
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: rgba(237,232,225,0.85); }
+
+.footer-links li:not(li a) {
+  font-size: 0.875rem;
+  color: rgba(237,232,225,0.38);
+  line-height: 1.55;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-copy { font-size: 0.78125rem; }
+
+.footer-goog {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: 0.78125rem;
+  color: rgba(237,232,225,0.28);
+}
+
+.footer-goog svg { color: var(--matcha); opacity: 0.7; }
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 1100px) {
+  .nav { padding: var(--s-5) var(--s-7); }
+  .nav.scrolled { padding: var(--s-4) var(--s-7); }
+  .nav-links { display: none; }
+  .nav-cta { display: none; }
+  .nav-hamburger { display: flex; }
+
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-image-panel { height: 56vh; order: -1; }
+  .hero-content-panel { padding: var(--s-9) var(--s-7) var(--s-10); }
+  .hero-content-panel::before { display: none; }
+  .hero-numeral { display: none; }
+
+  .about-grid { grid-template-columns: 1fr; gap: var(--s-9); }
+  .about-img-stack { height: 400px; }
+  .about-badge { display: none; }
+  .about-deco { font-size: 20vw; }
+
+  .menu-panel.active { grid-template-columns: 1fr 1fr; }
+  .menu-top { grid-template-columns: 1fr; }
+  .menu-desc-right { text-align: left; max-width: 100%; }
+
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .location-grid { grid-template-columns: 1fr; gap: var(--s-9); }
+  .location-map { position: static; }
+
+  .footer-top { grid-template-columns: 1fr 1fr; gap: var(--s-8); }
+
+  .s-wrap { padding: 0 var(--s-7); }
+  .gallery-top { padding: 0 var(--s-7); }
+  .gallery-controls { padding: 0 var(--s-7); }
+  .reviews-top { padding: 0 var(--s-7); }
+}
+
+@media (max-width: 768px) {
+  .about { padding: var(--s-10) 0; }
+  .menu { padding: var(--s-10) 0; }
+  .gallery { padding: var(--s-10) 0; }
+  .reviews { padding: var(--s-10) 0; }
+  .features { padding: var(--s-10) 0; }
+  .location { padding: var(--s-10) 0; }
+  .cta-band { padding: var(--s-10) var(--s-5); }
+
+  .hero-h1 { font-size: 2.75rem; }
+  .hero-meta { flex-wrap: wrap; gap: var(--s-5); }
+  .hero-content-panel { padding: var(--s-8) var(--s-5) var(--s-9); }
+
+  .menu-panel.active { grid-template-columns: 1fr; }
+  .features-grid { grid-template-columns: 1fr; }
+
+  .gallery-item { width: 320px !important; height: 400px !important; }
+  .rv-card { width: 320px; }
+
+  .about-stats { grid-template-columns: 1fr; }
+
+  .footer-top { grid-template-columns: 1fr; gap: var(--s-7); }
+  .footer-bottom { flex-direction: column; gap: var(--s-3); text-align: center; }
+
+  .reviews-top { grid-template-columns: 1fr; gap: var(--s-5); }
+  .reviews-agg { text-align: left; }
+  .rev-stars { justify-content: flex-start; }
+
+  .cta-btns { flex-direction: column; align-items: center; }
+
+  .s-wrap { padding: 0 var(--s-5); }
+  .gallery-top { padding: 0 var(--s-5); }
+  .gallery-controls { padding: 0 var(--s-5); }
+  .reviews-top { padding: 0 var(--s-5); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reviews-track { animation: none; }
+  .reveal-clip, .reveal-up, .reveal-left, .reveal-right, .reveal-scale {
     opacity: 1;
-    transform: translateY(0);
-  }
-
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
-  .reveal-delay-4 { transition-delay: 0.4s; }
-  .reveal-delay-5 { transition-delay: 0.5s; }
-
-  /* ============================================
-     ABOUT SECTION
-  ============================================ */
-  .about {
-    background: var(--bg-secondary);
-    overflow: hidden;
-  }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .about-content {}
-
-  .about-title {
-    font-family: var(--font-display);
-    font-size: clamp(2.25rem, 3.5vw, 3.5rem);
-    font-weight: 400;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
-    margin-bottom: 32px;
-  }
-
-  .about-title em {
-    font-style: italic;
-    color: var(--matcha);
-  }
-
-  .about-body {
-    font-size: 1.0625rem;
-    line-height: 1.8;
-    color: var(--text-muted);
-    margin-bottom: 20px;
-  }
-
-  .about-stats {
-    display: flex;
-    gap: 48px;
-    margin-top: 48px;
-    padding-top: 40px;
-    border-top: 1px solid var(--border);
-  }
-
-  .about-stat-number {
-    font-family: var(--font-display);
-    font-size: 2.75rem;
-    font-weight: 400;
-    color: var(--matcha);
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-
-  .about-stat-label {
-    font-size: 0.8125rem;
-    color: var(--text-muted);
-    line-height: 1.4;
-  }
-
-  .about-visual {
-    position: relative;
-  }
-
-  .about-image-stack {
-    position: relative;
-    height: 560px;
-  }
-
-  .about-img-main {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 78%;
-    height: 88%;
-    object-fit: cover;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
-  }
-
-  .about-img-accent {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 52%;
-    height: 52%;
-    object-fit: cover;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lift);
-    border: 4px solid var(--bg-secondary);
-  }
-
-  .about-badge {
-    position: absolute;
-    top: 40%;
-    right: -20px;
-    background: var(--matcha);
-    color: #fff;
-    border-radius: var(--radius-md);
-    padding: 20px 24px;
-    text-align: center;
-    box-shadow: var(--shadow-card);
-    z-index: 3;
-  }
-
-  .about-badge-icon { font-size: 1.5rem; margin-bottom: 6px; }
-
-  .about-badge-text {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    opacity: 0.9;
-  }
-
-  /* ============================================
-     MENU SECTION
-  ============================================ */
-  .menu {
-    background: var(--bg-primary);
-  }
-
-  .menu-header {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: end;
-    gap: 40px;
-    margin-bottom: 72px;
-  }
-
-  .menu-tabs {
-    display: flex;
-    gap: 4px;
-    background: var(--bg-secondary);
-    border-radius: 100px;
-    padding: 4px;
-    width: fit-content;
-    margin-top: 32px;
-  }
-
-  .menu-tab {
-    padding: 10px 24px;
-    border-radius: 100px;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    cursor: pointer;
-    transition: all var(--transition-smooth);
-    border: none;
-    background: transparent;
-    color: var(--text-muted);
-  }
-
-  .menu-tab.active {
-    background: var(--bg-card);
-    color: var(--text-primary);
-    box-shadow: var(--shadow-soft);
-  }
-
-  .menu-tab:hover:not(.active) { color: var(--text-primary); }
-
-  .menu-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-  }
-
-  .menu-panel {
-    display: none;
-  }
-
-  .menu-panel.active {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-  }
-
-  .menu-card {
-    background: var(--bg-card);
-    padding: 36px 32px;
-    position: relative;
-    transition: all var(--transition-smooth);
-    cursor: default;
-  }
-
-  .menu-card:hover {
-    background: var(--matcha);
-    transform: scale(1.01);
-    z-index: 2;
-    box-shadow: var(--shadow-lift);
-  }
-
-  .menu-card:hover .menu-card-name,
-  .menu-card:hover .menu-card-desc,
-  .menu-card:hover .menu-card-price,
-  .menu-card:hover .menu-card-tag {
-    color: rgba(255,255,255,0.9) !important;
-  }
-
-  .menu-card:hover .menu-card-price {
-    color: #fff !important;
-  }
-
-  .menu-card-tag {
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--matcha);
-    margin-bottom: 12px;
-    transition: color var(--transition-fast);
-  }
-
-  .menu-card-name {
-    font-family: var(--font-display);
-    font-size: 1.375rem;
-    font-weight: 400;
-    color: var(--text-primary);
-    margin-bottom: 10px;
-    line-height: 1.2;
-    transition: color var(--transition-fast);
-  }
-
-  .menu-card-desc {
-    font-size: 0.875rem;
-    line-height: 1.6;
-    color: var(--text-muted);
-    margin-bottom: 20px;
-    transition: color var(--transition-fast);
-  }
-
-  .menu-card-price {
-    font-size: 1.0625rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    transition: color var(--transition-fast);
-  }
-
-  .menu-card-featured {
-    background: var(--bg-secondary);
-  }
-
-  /* ============================================
-     GALLERY SECTION
-  ============================================ */
-  .gallery {
-    background: var(--bg-secondary);
-    padding: 120px 0;
-    overflow: hidden;
-  }
-
-  .gallery-header {
-    padding: 0 48px;
-    max-width: 1280px;
-    margin: 0 auto 56px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: end;
-    gap: 40px;
-  }
-
-  .gallery-track-wrap {
-    overflow: hidden;
-    cursor: grab;
-    user-select: none;
-  }
-
-  .gallery-track-wrap:active { cursor: grabbing; }
-
-  .gallery-track {
-    display: flex;
-    gap: 20px;
-    will-change: transform;
-  }
-
-  .gallery-item {
-    flex-shrink: 0;
-    width: 480px;
-    height: 600px;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    position: relative;
-  }
-
-  .gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s cubic-bezier(0.4,0,0.2,1);
-    pointer-events: none;
-  }
-
-  .gallery-item:hover img {
-    transform: scale(1.05);
-  }
-
-  .gallery-controls {
-    display: flex;
-    gap: 12px;
-    padding: 0 48px;
-    max-width: 1280px;
-    margin: 32px auto 0;
-  }
-
-  .gallery-btn {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    border: 1.5px solid var(--border);
-    background: var(--bg-card);
-    color: var(--text-primary);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all var(--transition-fast);
-    font-size: 1.125rem;
-  }
-
-  .gallery-btn:hover {
-    background: var(--matcha);
-    border-color: var(--matcha);
-    color: #fff;
-    transform: scale(1.05);
-  }
-
-  /* ============================================
-     REVIEWS SECTION
-  ============================================ */
-  .reviews {
-    background: var(--bg-primary);
-    padding: 120px 0;
-    overflow: hidden;
-  }
-
-  .reviews-header {
-    padding: 0 48px;
-    max-width: 1280px;
-    margin: 0 auto 64px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: end;
-  }
-
-  .reviews-aggregate {
-    text-align: right;
-  }
-
-  .reviews-score {
-    font-family: var(--font-display);
-    font-size: 3.5rem;
-    font-weight: 400;
-    color: var(--text-primary);
-    line-height: 1;
-  }
-
-  .reviews-stars-row {
-    display: flex;
-    justify-content: flex-end;
-    gap: 4px;
-    margin: 8px 0 4px;
-  }
-
-  .star-icon {
-    color: #F4A526;
-    font-size: 1rem;
-  }
-
-  .reviews-count {
-    font-size: 0.8125rem;
-    color: var(--text-faint);
-  }
-
-  .reviews-scroll-wrap {
-    overflow: hidden;
-    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-  }
-
-  .reviews-track {
-    display: flex;
-    gap: 24px;
-    animation: infiniteScroll 40s linear infinite;
-    width: max-content;
-  }
-
-  .reviews-track:hover { animation-play-state: paused; }
-
-  @keyframes infiniteScroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  .review-card {
-    flex-shrink: 0;
-    width: 380px;
-    background: var(--bg-card);
-    border-radius: var(--radius-lg);
-    padding: 36px;
-    border: 1px solid var(--border);
-    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
-  }
-
-  .review-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-card);
-  }
-
-  .review-stars {
-    display: flex;
-    gap: 3px;
-    margin-bottom: 20px;
-  }
-
-  .review-text {
-    font-size: 0.9375rem;
-    line-height: 1.75;
-    color: var(--text-secondary);
-    margin-bottom: 24px;
-    font-style: italic;
-  }
-
-  .review-author-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .review-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: var(--matcha);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 0.875rem;
-    color: #fff;
-    flex-shrink: 0;
-  }
-
-  .review-author-name {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    line-height: 1.2;
-  }
-
-  .review-author-label {
-    font-size: 0.75rem;
-    color: var(--text-faint);
-  }
-
-  /* ============================================
-     FEATURES SECTION
-  ============================================ */
-  .features {
-    background: var(--bg-secondary);
-    padding: 120px 0;
-  }
-
-  .features-header {
-    text-align: center;
-    margin-bottom: 72px;
-  }
-
-  .features-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 24px;
-  }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
-  }
-
-  .feature-card {
-    background: var(--bg-card);
-    padding: 40px 32px;
-    transition: all var(--transition-smooth);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .feature-card::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: var(--matcha);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform var(--transition-smooth);
-  }
-
-  .feature-card:hover::before {
-    transform: scaleX(1);
-  }
-
-  .feature-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-card);
-    z-index: 2;
-  }
-
-  .feature-icon {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    display: block;
-  }
-
-  .feature-title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 10px;
-    letter-spacing: -0.01em;
-  }
-
-  .feature-desc {
-    font-size: 0.875rem;
-    line-height: 1.65;
-    color: var(--text-muted);
-  }
-
-  /* ============================================
-     LOCATION SECTION
-  ============================================ */
-  .location {
-    background: var(--bg-primary);
-    padding: 120px 0;
-  }
-
-  .location-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .location-map {
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-card);
-    height: 480px;
-  }
-
-  .location-map iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-  }
-
-  .location-info {}
-
-  .location-detail {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    margin-bottom: 32px;
-  }
-
-  .location-detail-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: var(--radius-sm);
-    background: var(--bg-secondary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.25rem;
-    flex-shrink: 0;
-    transition: background var(--transition-fast);
-  }
-
-  .location-detail:hover .location-detail-icon {
-    background: var(--matcha);
-  }
-
-  .location-detail-title {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-faint);
-    margin-bottom: 6px;
-  }
-
-  .location-detail-value {
-    font-size: 1rem;
-    color: var(--text-primary);
-    line-height: 1.5;
-  }
-
-  .location-hours-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px 24px;
-  }
-
-  .location-hour-row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.875rem;
-    padding: 6px 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .location-hour-day { color: var(--text-muted); }
-  .location-hour-time { color: var(--text-primary); font-weight: 500; }
-
-  /* ============================================
-     CTA SECTION
-  ============================================ */
-  .cta-section {
-    background: var(--matcha-dark);
-    padding: 120px 48px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cta-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 30% 50%, rgba(92,122,78,0.4), transparent 60%),
-                radial-gradient(ellipse at 70% 50%, rgba(61,82,53,0.4), transparent 60%);
-    pointer-events: none;
-  }
-
-  .cta-inner {
-    position: relative;
-    z-index: 2;
-    max-width: 640px;
-    margin: 0 auto;
-  }
-
-  .cta-eyebrow {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.6);
-    margin-bottom: 24px;
-  }
-
-  .cta-title {
-    font-family: var(--font-display);
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 400;
-    color: #fff;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin-bottom: 20px;
-  }
-
-  .cta-title em {
-    font-style: italic;
-    color: var(--matcha-muted);
-  }
-
-  .cta-subtitle {
-    font-size: 1.0625rem;
-    color: rgba(255,255,255,0.65);
-    line-height: 1.7;
-    margin-bottom: 48px;
-  }
-
-  .cta-buttons {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .btn-white {
-    padding: 16px 40px;
-    background: #fff;
-    color: var(--matcha-dark);
-    border-radius: 100px;
-    font-size: 0.9375rem;
-    font-weight: 700;
-    transition: all var(--transition-elastic);
-    border: none;
-    cursor: pointer;
-  }
-
-  .btn-white:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.25);
-  }
-
-  .btn-ghost {
-    padding: 16px 40px;
-    background: transparent;
-    color: #fff;
-    border-radius: 100px;
-    font-size: 0.9375rem;
-    font-weight: 500;
-    border: 1.5px solid rgba(255,255,255,0.3);
-    transition: all var(--transition-smooth);
-    cursor: pointer;
-  }
-
-  .btn-ghost:hover {
-    border-color: rgba(255,255,255,0.7);
-    background: rgba(255,255,255,0.08);
-    transform: translateY(-2px);
-  }
-
-  /* ============================================
-     FOOTER
-  ============================================ */
-  .footer {
-    background: var(--ink);
-    padding: 72px 48px 40px;
-    color: rgba(240,235,227,0.5);
-  }
-
-  [data-theme="dark"] .footer {
-    background: #0A0A08;
-  }
-
-  .footer-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-  }
-
-  .footer-top {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr;
-    gap: 64px;
-    padding-bottom: 64px;
-    border-bottom: 1px solid rgba(240,235,227,0.08);
-    margin-bottom: 40px;
-  }
-
-  .footer-brand-name {
-    font-family: var(--font-display);
-    font-size: 1.375rem;
-    font-weight: 400;
-    color: #F0EBE3;
-    margin-bottom: 16px;
-  }
-
-  .footer-brand-name span {
-    font-style: italic;
-    color: var(--matcha-muted);
-  }
-
-  .footer-brand-desc {
-    font-size: 0.875rem;
-    line-height: 1.7;
-    color: rgba(240,235,227,0.45);
-    margin-bottom: 32px;
-    max-width: 260px;
-  }
-
-  .footer-social {
-    display: flex;
-    gap: 12px;
-  }
-
-  .footer-social-link {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid rgba(240,235,227,0.12);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.875rem;
-    color: rgba(240,235,227,0.5);
-    transition: all var(--transition-fast);
-  }
-
-  .footer-social-link:hover {
-    background: var(--matcha);
-    border-color: var(--matcha);
-    color: #fff;
-    transform: translateY(-2px);
-  }
-
-  .footer-col-title {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(240,235,227,0.8);
-    margin-bottom: 20px;
-  }
-
-  .footer-links {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .footer-links a {
-    font-size: 0.875rem;
-    color: rgba(240,235,227,0.45);
-    transition: color var(--transition-fast);
-  }
-
-  .footer-links a:hover { color: rgba(240,235,227,0.85); }
-
-  .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .footer-copy {
-    font-size: 0.8125rem;
-    color: rgba(240,235,227,0.3);
-  }
-
-  .footer-google {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.8125rem;
-    color: rgba(240,235,227,0.3);
-  }
-
-  /* ============================================
-     ANIMATIONS
-  ============================================ */
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
-  }
-
-  /* ============================================
-     SCROLLBAR
-  ============================================ */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--bg-secondary); }
-  ::-webkit-scrollbar-thumb { background: var(--matcha-muted); border-radius: 3px; }
-
-  /* ============================================
-     MOBILE MENU
-  ============================================ */
-  .mobile-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--bg-primary);
-    z-index: 999;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 32px;
-    transform: translateX(100%);
-    transition: transform var(--transition-smooth);
-  }
-
-  .mobile-menu.open {
-    transform: translateX(0);
-  }
-
-  .mobile-menu a {
-    font-family: var(--font-display);
-    font-size: 2rem;
-    font-weight: 400;
-    color: var(--text-primary);
-    transition: color var(--transition-fast);
-  }
-
-  .mobile-menu a:hover { color: var(--matcha); }
-
-  .mobile-menu-close {
-    position: absolute;
-    top: 24px;
-    right: 24px;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--text-primary);
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: background var(--transition-fast);
-  }
-
-  .mobile-menu-close:hover { background: var(--bg-secondary); }
-
-  /* ============================================
-     RESPONSIVE
-  ============================================ */
-  @media (max-width: 1024px) {
-    .nav { padding: 20px 32px; }
-    .nav.scrolled { padding: 14px 32px; }
-    .nav-links { display: none; }
-    .nav-hamburger { display: flex; }
-    .nav-cta { display: none; }
-
-    .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-image-panel { height: 55vh; order: -1; }
-    .hero-content-panel { padding: 64px 32px 80px; }
-
-    .about-grid { grid-template-columns: 1fr; gap: 56px; }
-    .about-image-stack { height: 400px; }
-    .about-badge { display: none; }
-
-    .menu-panel.active { grid-template-columns: repeat(2, 1fr); }
-
-    .features-grid { grid-template-columns: repeat(2, 1fr); }
-
-    .location-grid { grid-template-columns: 1fr; gap: 56px; }
-
-    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
-
-    .section-inner { padding: 0 32px; }
-    .gallery-header { padding: 0 32px; }
-    .gallery-controls { padding: 0 32px; }
-    .reviews-header { padding: 0 32px; }
-    .cta-section { padding: 80px 32px; }
-    .footer { padding: 64px 32px 40px; }
-  }
-
-  @media (max-width: 768px) {
-    .section { padding: 80px 0; }
-    .hero-title { font-size: 2.5rem; }
-    .hero-content-panel { padding: 56px 24px 64px; }
-    .hero-meta { gap: 24px; flex-wrap: wrap; }
-    .menu-panel.active { grid-template-columns: 1fr; }
-    .menu-header { grid-template-columns: 1fr; }
-    .gallery-item { width: 300px; height: 380px; }
-    .review-card { width: 300px; }
-    .features-grid { grid-template-columns: 1fr; }
-    .footer-top { grid-template-columns: 1fr; gap: 32px; }
-    .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
-    .reviews-header { grid-template-columns: 1fr; }
-    .reviews-aggregate { text-align: left; }
-    .about-stats { flex-wrap: wrap; gap: 32px; }
-    .cta-buttons { flex-direction: column; align-items: center; }
-  }
-
-  /* Marquee pause on reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    .reviews-track { animation: none; }
-    .reveal { opacity: 1; transform: none; }
-  }
+    transform: none;
+    clip-path: none;
+    transition: none;
+  }
+  .nav-logo-dot { animation: none; }
+}
 </style>
 </head>
 <body>
 
-<!-- ==================== NAVIGATION ==================== -->
-<nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
-  <a href="#" class="nav-logo" aria-label="Coffee & Matcha Home">Coffee &amp; <span>Matcha</span></a>
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
-  <ul class="nav-links">
+<!-- ======================================================
+     NAVIGATION
+====================================================== -->
+<nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+  <a href="#" class="nav-logo" aria-label="Coffee & Matcha Home">
+    <span class="nav-logo-dot" aria-hidden="true"></span>
+    Coffee &amp; <em>Matcha</em>
+  </a>
+
+  <ul class="nav-links" role="list">
     <li><a href="#about">About</a></li>
     <li><a href="#menu">Menu</a></li>
     <li><a href="#gallery">Gallery</a></li>
@@ -1447,13 +1676,17 @@
   </ul>
 
   <div class="nav-actions">
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="themeIcon">
-        <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle colour theme" title="Toggle theme">
+      <svg id="themeIcon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
       </svg>
     </button>
     <a href="#location" class="nav-cta">Find Us</a>
-    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+    <button class="nav-hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -1461,678 +1694,515 @@
 
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
-  <button class="mobile-menu-close" id="mobileClose" aria-label="Close menu">✕</button>
-  <a href="#about" class="mobile-nav-link">About</a>
-  <a href="#menu" class="mobile-nav-link">Menu</a>
-  <a href="#gallery" class="mobile-nav-link">Gallery</a>
-  <a href="#reviews" class="mobile-nav-link">Reviews</a>
-  <a href="#location" class="mobile-nav-link">Visit Us</a>
+  <button class="mobile-menu-close" id="mobileClose" aria-label="Close navigation menu">✕</button>
+  <a href="#about" class="mob-link">About</a>
+  <a href="#menu" class="mob-link">Menu</a>
+  <a href="#gallery" class="mob-link">Gallery</a>
+  <a href="#reviews" class="mob-link">Reviews</a>
+  <a href="#location" class="mob-link">Visit Us</a>
 </div>
 
-<!-- ==================== HERO ==================== -->
-<section class="hero" id="hero" aria-label="Hero section">
-  <!-- Untouched hero image — 50% of layout, no overlays -->
-  <div class="hero-image-panel">
+<!-- ======================================================
+     HERO  — image occupies exactly 50%, zero overlays
+====================================================== -->
+<section class="hero" id="hero" aria-label="Hero — Coffee and Matcha, New Barnet">
+
+  <!-- 50% — completely untouched hero image -->
+  <div class="hero-image-panel" id="heroImgPanel">
     <img
       src="https://i.ibb.co/ZRT08fxF/f.png"
-      alt="Coffee and Matcha New Barnet interior atmosphere"
+      alt="Coffee and Matcha café — New Barnet, North London"
+      id="heroImg"
       fetchpriority="high"
     >
   </div>
 
-  <!-- Content panel -->
+  <!-- 50% — content panel -->
   <div class="hero-content-panel">
-    <div class="hero-eyebrow">
-      <div class="hero-eyebrow-line"></div>
-      <span class="hero-eyebrow-text">New Barnet · North London</span>
+
+    <div class="hero-tag">
+      <div class="hero-tag-pip" aria-hidden="true"></div>
+      <span class="hero-tag-text">New Barnet · North London</span>
     </div>
 
-    <h1 class="hero-title">
-      Where Coffee<br>meets <em>Matcha</em>
+    <h1 class="hero-h1">
+      Where Coffee<br>meets
+      <em>Matcha</em>
     </h1>
 
-    <p class="hero-subtitle">
-      A calm, considered space crafted for those who appreciate the art of a beautifully made drink. Specialty coffee and ceremonial matcha, served with intention.
+    <p class="hero-sub">
+      A calm, considered space for those who appreciate the craft. Specialty coffee and ceremonial matcha — served with intention in the heart of New Barnet.
     </p>
 
-    <div class="hero-buttons">
-      <a href="#menu" class="btn-primary">
+    <div class="hero-btns">
+      <a href="#menu" class="btn-mag btn-primary-mag" data-magnetic>
         Explore Menu
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
-      <a href="#location" class="btn-secondary">
+      <a href="#location" class="btn-mag btn-outline-mag" data-magnetic>
         Find Us
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
       </a>
     </div>
 
     <div class="hero-meta">
       <div class="hero-meta-item">
-        <span class="hero-meta-label">Rating</span>
-        <span class="hero-meta-value">4.7 ★ Google</span>
+        <span class="hero-meta-label">Google Rating</span>
+        <span class="hero-meta-value">4.7 ★</span>
       </div>
       <div class="hero-meta-item">
-        <span class="hero-meta-label">Cuisine</span>
-        <span class="hero-meta-value">Specialty Drinks</span>
+        <span class="hero-meta-label">Specialty</span>
+        <span class="hero-meta-value">Coffee &amp; Matcha</span>
       </div>
       <div class="hero-meta-item">
         <span class="hero-meta-label">Vibe</span>
-        <span class="hero-meta-value">Calm &amp; Casual</span>
+        <span class="hero-meta-value">Calm &amp; Considered</span>
       </div>
     </div>
+
+    <!-- Decorative background numeral -->
+    <span class="hero-numeral" aria-hidden="true">&amp;</span>
   </div>
+
 </section>
 
-<!-- ==================== ABOUT ==================== -->
-<section class="section about" id="about" aria-labelledby="about-title">
-  <div class="section-inner">
+<!-- ======================================================
+     ABOUT
+====================================================== -->
+<section class="about" id="about" aria-labelledby="about-h">
+  <span class="about-deco" aria-hidden="true">Craft</span>
+  <div class="s-wrap">
     <div class="about-grid">
-      <div class="about-content">
-        <div class="section-label reveal">
-          <div class="section-label-line"></div>
-          <span class="section-label-text">Our Story</span>
+
+      <div>
+        <div class="section-tag reveal-up">
+          <div class="section-tag-line" aria-hidden="true"></div>
+          <span class="section-tag-text">Our Story</span>
         </div>
 
-        <h2 class="about-title reveal reveal-delay-1" id="about-title">
+        <h2 class="about-h2 reveal-clip" id="about-h">
           Crafted with<br><em>care and calm</em>
         </h2>
 
-        <p class="about-body reveal reveal-delay-2">
-          Coffee &amp; Matcha is a neighbourhood café in the heart of New Barnet, North London — built for those who believe a great drink deserves more than a quick pour. We source our coffee with care and prepare ceremonial grade matcha with the same reverence.
+        <p class="about-body reveal-up d-1">
+          Coffee &amp; Matcha is a neighbourhood café in the heart of New Barnet — built for those who believe a great drink deserves more than a quick pour. We source our coffee with care and prepare ceremonial grade matcha with the same reverence.
         </p>
 
-        <p class="about-body reveal reveal-delay-3">
-          Whether you're settling in for the morning, pausing between errands, or simply seeking a moment of calm — this is your space. No rush. No noise. Just exceptional drinks in a considered environment.
+        <p class="about-body reveal-up d-2">
+          Whether you're settling in for the morning, pausing between errands, or simply seeking a quiet moment — this is your space. No rush. No noise. Just exceptional drinks in a considered environment.
         </p>
 
-        <div class="about-stats reveal reveal-delay-4">
-          <div>
-            <div class="about-stat-number">4.7</div>
-            <div class="about-stat-label">Star rating<br>on Google</div>
+        <div class="about-stats reveal-up d-3" role="list" aria-label="Café highlights">
+          <div class="about-stat" role="listitem">
+            <span class="about-stat-num" data-count="4.7" data-dec="1">4.7</span>
+            <span class="about-stat-lbl">Star rating<br>on Google</span>
           </div>
-          <div>
-            <div class="about-stat-number">2</div>
-            <div class="about-stat-label">Drinks we<br>do brilliantly</div>
+          <div class="about-stat" role="listitem">
+            <span class="about-stat-num" data-count="2" data-dec="0">2</span>
+            <span class="about-stat-lbl">Drinks done<br>brilliantly</span>
           </div>
-          <div>
-            <div class="about-stat-number">∞</div>
-            <div class="about-stat-label">Reasons to<br>come back</div>
+          <div class="about-stat" role="listitem">
+            <span class="about-stat-num">∞</span>
+            <span class="about-stat-lbl">Reasons to<br>return</span>
           </div>
         </div>
       </div>
 
-      <div class="about-visual reveal reveal-delay-2">
-        <div class="about-image-stack">
+      <div class="about-visual reveal-right d-2">
+        <div class="about-img-stack">
           <img
-            class="about-img-main"
+            class="about-img-a"
             src="https://i.ibb.co/9HkBmjWN/a.png"
-            alt="Coffee being crafted at Coffee and Matcha"
+            alt="Specialty coffee being crafted"
             loading="lazy"
           >
           <img
-            class="about-img-accent"
+            class="about-img-b"
             src="https://i.ibb.co/KcgnP4DS/b.png"
-            alt="Matcha preparation close up"
+            alt="Ceremonial matcha preparation"
             loading="lazy"
           >
-          <div class="about-badge">
-            <div class="about-badge-icon">🍵</div>
-            <div class="about-badge-text">Ceremonial<br>Grade</div>
+          <div class="about-badge" aria-label="Ceremonial grade matcha">
+            <div class="about-badge-ico">🍵</div>
+            <div class="about-badge-txt">Ceremonial<br>Grade</div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- ==================== MENU ==================== -->
-<section class="section menu" id="menu" aria-labelledby="menu-title">
-  <div class="section-inner">
-    <div class="menu-header">
+<!-- ======================================================
+     MENU
+====================================================== -->
+<section class="menu" id="menu" aria-labelledby="menu-h">
+  <div class="s-wrap">
+
+    <div class="menu-top">
       <div>
-        <div class="section-label reveal">
-          <div class="section-label-line"></div>
-          <span class="section-label-text">What We Serve</span>
+        <div class="section-tag reveal-up">
+          <div class="section-tag-line" aria-hidden="true"></div>
+          <span class="section-tag-text">What We Serve</span>
         </div>
-        <h2 class="section-title reveal reveal-delay-1" id="menu-title">The <em>menu</em></h2>
+        <h2 class="s-heading reveal-clip" id="menu-h">The <em>menu</em></h2>
 
-        <div class="menu-tabs reveal reveal-delay-2" role="tablist" aria-label="Menu categories">
-          <button class="menu-tab active" data-tab="coffee" role="tab" aria-selected="true" aria-controls="panel-coffee">Coffee</button>
-          <button class="menu-tab" data-tab="matcha" role="tab" aria-selected="false" aria-controls="panel-matcha">Matcha</button>
-          <button class="menu-tab" data-tab="bites" role="tab" aria-selected="false" aria-controls="panel-bites">Quick Bites</button>
+        <div class="menu-tabs reveal-up d-1" role="tablist" aria-label="Menu categories">
+          <button class="menu-tab active" data-tab="coffee" role="tab" aria-selected="true" aria-controls="panel-coffee" id="tab-coffee">Coffee</button>
+          <button class="menu-tab" data-tab="matcha" role="tab" aria-selected="false" aria-controls="panel-matcha" id="tab-matcha">Matcha</button>
+          <button class="menu-tab" data-tab="bites" role="tab" aria-selected="false" aria-controls="panel-bites" id="tab-bites">Quick Bites</button>
         </div>
       </div>
+      <p class="menu-desc-right reveal-left d-2">
+        Every drink is prepared with<br>the same care — whether you<br>stay or take it with you.
+      </p>
     </div>
 
-    <!-- Coffee Panel -->
+    <!-- Coffee -->
     <div class="menu-panel active" id="panel-coffee" role="tabpanel" aria-labelledby="tab-coffee">
-      <div class="menu-card reveal">
-        <div class="menu-card-tag">Signature</div>
-        <div class="menu-card-name">Flat White</div>
-        <div class="menu-card-desc">Velvety microfoam over a double ristretto. Clean, bright, and beautifully balanced.</div>
-        <div class="menu-card-price">£3.50</div>
-      </div>
-      <div class="menu-card menu-card-featured reveal reveal-delay-1">
-        <div class="menu-card-tag">Most Loved</div>
-        <div class="menu-card-name">Oat Cortado</div>
-        <div class="menu-card-desc">Equal parts espresso and oat milk. Nutty, smooth, and utterly satisfying.</div>
-        <div class="menu-card-price">£3.80</div>
-      </div>
-      <div class="menu-card reveal reveal-delay-2">
-        <div class="menu-card-tag">Classic</div>
-        <div class="menu-card-name">Cappuccino</div>
-        <div class="menu-card-desc">Thick, airy foam layered over perfectly extracted espresso. A timeless ritual.</div>
-        <div class="menu-card-price">£3.40</div>
-      </div>
-      <div class="menu-card reveal reveal-delay-3">
-        <div class="menu-card-tag">Seasonal</div>
-        <div class="menu-card-name">Cold Brew</div>
-        <div class="menu-card-desc">Slow-steeped for 18 hours. Rich, smooth, and deeply refreshing over ice.</div>
-        <div class="menu-card-price">£4.20</div>
-      </div>
-      <div class="menu-card reveal reveal-delay-4">
-        <div class="menu-card-tag">Simple</div>
-        <div class="menu-card-name">Espresso</div>
-        <div class="menu-card-desc">A short, intense shot of pure craft. The foundation of everything we do.</div>
-        <div class="menu-card-price">£2.40</div>
-      </div>
-      <div class="menu-card reveal reveal-delay-5">
-        <div class="menu-card-tag">Comfort</div>
-        <div class="menu-card-name">Café Latte</div>
-        <div class="menu-card-desc">Generous and smooth. A familiar favourite made with care and quality milk.</div>
-        <div class="menu-card-price">£3.60</div>
-      </div>
+      <div class="menu-card reveal-up"><div class="mc-tag">Signature</div><div class="mc-name">Flat White</div><div class="mc-desc">Velvety microfoam over a double ristretto. Clean, bright, perfectly balanced.</div><div class="mc-price">£3.50</div></div>
+      <div class="menu-card reveal-up d-1"><div class="mc-tag">Most Loved</div><div class="mc-name">Oat Cortado</div><div class="mc-desc">Equal parts espresso and oat milk. Nutty, smooth, and utterly satisfying.</div><div class="mc-price">£3.80</div></div>
+      <div class="menu-card reveal-up d-2"><div class="mc-tag">Classic</div><div class="mc-name">Cappuccino</div><div class="mc-desc">Thick, airy foam over perfectly extracted espresso. A timeless ritual.</div><div class="mc-price">£3.40</div></div>
+      <div class="menu-card reveal-up d-3"><div class="mc-tag">Seasonal</div><div class="mc-name">Cold Brew</div><div class="mc-desc">Slow-steeped 18 hours. Rich, smooth, and deeply refreshing over ice.</div><div class="mc-price">£4.20</div></div>
+      <div class="menu-card reveal-up d-4"><div class="mc-tag">Pure</div><div class="mc-name">Espresso</div><div class="mc-desc">A short, intense shot of pure craft. The foundation of everything we do.</div><div class="mc-price">£2.40</div></div>
+      <div class="menu-card reveal-up d-5"><div class="mc-tag">Comfort</div><div class="mc-name">Café Latte</div><div class="mc-desc">Generous and smooth. A familiar favourite made with care and quality milk.</div><div class="mc-price">£3.60</div></div>
     </div>
 
-    <!-- Matcha Panel -->
+    <!-- Matcha -->
     <div class="menu-panel" id="panel-matcha" role="tabpanel" aria-labelledby="tab-matcha">
-      <div class="menu-card reveal">
-        <div class="menu-card-tag">Ceremonial</div>
-        <div class="menu-card-name">Matcha Latte</div>
-        <div class="menu-card-desc">Ceremonial grade matcha whisked to a vibrant foam, paired with your choice of milk.</div>
-        <div class="menu-card-price">£4.20</div>
-      </div>
-      <div class="menu-card menu-card-featured reveal reveal-delay-1">
-        <div class="menu-card-tag">Signature</div>
-        <div class="menu-card-name">Iced Matcha</div>
-        <div class="menu-card-desc">Bright, grassy matcha poured over ice with cold oat milk. Endlessly refreshing.</div>
-        <div class="menu-card-price">£4.50</div>
-      </div>
-      <div class="menu-card reveal reveal-delay-2">
-        <div class="menu-card-tag">Pure</div>
-        <div class="menu-card-name">Ceremonial Bowl</div>
-        <div class="menu-card-desc">Traditional preparation. Hot water, ceremonial matcha, a bamboo whisk. Nothing more.</div>
-        <div class="menu-card-price">£3.80</div>
-      </div>
-      <div class="menu-card reveal reveal-delay-3">
-        <div class="menu-card-tag">Fusion</div>
-        <div class="menu-card-name">Matcha Espresso</div>
-        <div class="menu-card-desc">A bold meeting of earthy matcha and rich espresso. Intense, surprising, and addictive.</div>
-        <div class="menu-card-price">£4.80</div>
-      </div>
-      <div class="menu-card reveal reveal-delay-4">
-        <div class="menu-card-tag">Sweet</div>
-        <div class="menu-card-name">Matcha Honey Latte</div>
-        <div class="menu-card-desc">Floral wildflower honey softens the matcha's earthiness. Naturally comforting.</div>
-        <div class="menu-card-price">£4.60</div>
-      </div>
-      <div class="menu-card reveal reveal-delay-5">
-        <div class="menu-card-tag">Cold</div>
-        <div class="menu-card-name">Matcha Tonic</div>
-        <div class="menu-card-desc">Sparkling tonic water with vivid matcha. A sharp, effervescent afternoon lift.</div>
-        <div class="menu-card-price">£4.40</div>
-      </div>
+      <div class="menu-card reveal-up"><div class="mc-tag">Ceremonial</div><div class="mc-name">Matcha Latte</div><div class="mc-desc">Ceremonial grade matcha whisked to a vibrant foam, with your choice of milk.</div><div class="mc-price">£4.20</div></div>
+      <div class="menu-card reveal-up d-1"><div class="mc-tag">Signature</div><div class="mc-name">Iced Matcha</div><div class="mc-desc">Bright, grassy matcha poured over ice with cold oat milk. Endlessly refreshing.</div><div class="mc-price">£4.50</div></div>
+      <div class="menu-card reveal-up d-2"><div class="mc-tag">Pure</div><div class="mc-name">Ceremonial Bowl</div><div class="mc-desc">Traditional preparation. Hot water, ceremonial matcha, a bamboo whisk. Nothing more.</div><div class="mc-price">£3.80</div></div>
+      <div class="menu-card reveal-up d-3"><div class="mc-tag">Fusion</div><div class="mc-name">Matcha Espresso</div><div class="mc-desc">A bold meeting of earthy matcha and rich espresso. Intense and addictive.</div><div class="mc-price">£4.80</div></div>
+      <div class="menu-card reveal-up d-4"><div class="mc-tag">Sweet</div><div class="mc-name">Honey Matcha Latte</div><div class="mc-desc">Floral wildflower honey softens the matcha's earthiness. Naturally comforting.</div><div class="mc-price">£4.60</div></div>
+      <div class="menu-card reveal-up d-5"><div class="mc-tag">Cold</div><div class="mc-name">Matcha Tonic</div><div class="mc-desc">Sparkling tonic water with vivid matcha. A sharp, effervescent afternoon lift.</div><div class="mc-price">£4.40</div></div>
     </div>
 
-    <!-- Bites Panel -->
+    <!-- Bites -->
     <div class="menu-panel" id="panel-bites" role="tabpanel" aria-labelledby="tab-bites">
-      <div class="menu-card reveal">
-        <div class="menu-card-tag">Morning</div>
-        <div class="menu-card-name">Matcha Croissant</div>
-        <div class="menu-card-desc">Buttery, flaky pastry with a delicate matcha swirl. Perfect with your morning latte.</div>
-        <div class="menu-card-price">£3.20</div>
-      </div>
-      <div class="menu-card menu-card-featured reveal reveal-delay-1">
-        <div class="menu-card-tag">House Made</div>
-        <div class="menu-card-name">Banana Bread</div>
-        <div class="menu-card-desc">Moist, warmly spiced, and baked fresh. A genuine crowd favourite.</div>
-        <div class="menu-card-price">£2.80</div>
-      </div>
-      <div class="menu-card reveal reveal-delay-2">
-        <div class="menu-card-tag">Light</div>
-        <div class="menu-card-name">Granola Pot</div>
-        <div class="menu-card-desc">House granola, yoghurt, and seasonal fruit. A calm, considered start.</div>
-        <div class="menu-card-price">£4.50</div>
-      </div>
-      <div class="menu-card reveal reveal-delay-3">
-        <div class="menu-card-tag">Afternoon</div>
-        <div class="menu-card-name">Almond Friand</div>
-        <div class="menu-card-desc">Light, moist almond cake with seasonal fruit. Effortlessly elegant.</div>
-        <div class="menu-card-price">£3.00</div>
-      </div>
-      <div class="menu-card reveal reveal-delay-4">
-        <div class="menu-card-tag">Simple</div>
-        <div class="menu-card-name">Sourdough Toast</div>
-        <div class="menu-card-desc">Thick-cut sourdough, toasted golden. With butter or your choice of topping.</div>
-        <div class="menu-card-price">£3.50</div>
-      </div>
-      <div class="menu-card reveal reveal-delay-5">
-        <div class="menu-card-tag">Sweet</div>
-        <div class="menu-card-name">Matcha Brownie</div>
-        <div class="menu-card-desc">Dense, fudgy, and deeply green. A proper treat for matcha devotees.</div>
-        <div class="menu-card-price">£3.20</div>
-      </div>
+      <div class="menu-card reveal-up"><div class="mc-tag">Morning</div><div class="mc-name">Matcha Croissant</div><div class="mc-desc">Buttery, flaky pastry with a delicate matcha swirl. Perfect with your latte.</div><div class="mc-price">£3.20</div></div>
+      <div class="menu-card reveal-up d-1"><div class="mc-tag">House Made</div><div class="mc-name">Banana Bread</div><div class="mc-desc">Moist, warmly spiced, baked fresh. A genuine crowd favourite.</div><div class="mc-price">£2.80</div></div>
+      <div class="menu-card reveal-up d-2"><div class="mc-tag">Light</div><div class="mc-name">Granola Pot</div><div class="mc-desc">House granola, yoghurt, and seasonal fruit. A calm, considered start.</div><div class="mc-price">£4.50</div></div>
+      <div class="menu-card reveal-up d-3"><div class="mc-tag">Afternoon</div><div class="mc-name">Almond Friand</div><div class="mc-desc">Light, moist almond cake with seasonal fruit. Effortlessly elegant.</div><div class="mc-price">£3.00</div></div>
+      <div class="menu-card reveal-up d-4"><div class="mc-tag">Simple</div><div class="mc-name">Sourdough Toast</div><div class="mc-desc">Thick-cut sourdough, toasted golden. With butter or your choice of topping.</div><div class="mc-price">£3.50</div></div>
+      <div class="menu-card reveal-up d-5"><div class="mc-tag">Sweet</div><div class="mc-name">Matcha Brownie</div><div class="mc-desc">Dense, fudgy, and deeply green. A proper treat for matcha devotees.</div><div class="mc-price">£3.20</div></div>
     </div>
+
   </div>
 </section>
 
-<!-- ==================== GALLERY ==================== -->
-<section class="gallery" id="gallery" aria-labelledby="gallery-title">
-  <div class="gallery-header">
+<!-- ======================================================
+     GALLERY  — only the 4 provided images
+====================================================== -->
+<section class="gallery" id="gallery" aria-labelledby="gallery-h">
+
+  <div class="gallery-top s-wrap">
     <div>
-      <div class="section-label reveal">
-        <div class="section-label-line"></div>
-        <span class="section-label-text">The Space</span>
+      <div class="section-tag reveal-up">
+        <div class="section-tag-line" aria-hidden="true"></div>
+        <span class="section-tag-text">The Space</span>
       </div>
-      <h2 class="section-title reveal reveal-delay-1" id="gallery-title">A place worth <em>visiting</em></h2>
+      <h2 class="s-heading reveal-clip" id="gallery-h">A place worth <em>visiting</em></h2>
     </div>
-    <p class="reveal reveal-delay-2" style="font-size:0.9375rem; color:var(--text-muted); max-width:280px; line-height:1.7; align-self:flex-end;">
-      Every corner considered. Every detail deliberate.
-    </p>
+    <p class="gallery-hint reveal-left d-2">Every corner considered.<br>Every detail deliberate.</p>
   </div>
 
-  <div class="gallery-track-wrap" id="galleryWrap" role="region" aria-label="Photo gallery">
+  <div class="gallery-track-wrap" id="galleryWrap" role="region" aria-label="Photo gallery — drag to explore">
     <div class="gallery-track" id="galleryTrack">
-      <!-- Original 4 images -->
-      <div class="gallery-item">
-        <img src="https://i.ibb.co/9HkBmjWN/a.png" alt="Coffee & Matcha atmosphere and drinks" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="https://i.ibb.co/KcgnP4DS/b.png" alt="Matcha preparation at Coffee & Matcha" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="https://i.ibb.co/hJbtYtV6/c.png" alt="Coffee & Matcha café interior" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="https://i.ibb.co/FLxJP9cD/d.png" alt="Coffee & Matcha drinks and food" loading="lazy">
-      </div>
-      <!-- Duplicates for seamless loop -->
-      <div class="gallery-item" aria-hidden="true">
-        <img src="https://i.ibb.co/9HkBmjWN/a.png" alt="" loading="lazy">
-      </div>
-      <div class="gallery-item" aria-hidden="true">
-        <img src="https://i.ibb.co/KcgnP4DS/b.png" alt="" loading="lazy">
-      </div>
-      <div class="gallery-item" aria-hidden="true">
-        <img src="https://i.ibb.co/hJbtYtV6/c.png" alt="" loading="lazy">
-      </div>
-      <div class="gallery-item" aria-hidden="true">
-        <img src="https://i.ibb.co/FLxJP9cD/d.png" alt="" loading="lazy">
-      </div>
+      <div class="gallery-item"><img src="https://i.ibb.co/9HkBmjWN/a.png" alt="Coffee & Matcha drinks and atmosphere" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://i.ibb.co/KcgnP4DS/b.png" alt="Matcha preparation" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://i.ibb.co/hJbtYtV6/c.png" alt="Café interior" loading="lazy"></div>
+      <div class="gallery-item"><img src="https://i.ibb.co/FLxJP9cD/d.png" alt="Coffee & Matcha offerings" loading="lazy"></div>
+      <!-- Seamless loop duplicates -->
+      <div class="gallery-item" aria-hidden="true"><img src="https://i.ibb.co/9HkBmjWN/a.png" alt="" loading="lazy"></div>
+      <div class="gallery-item" aria-hidden="true"><img src="https://i.ibb.co/KcgnP4DS/b.png" alt="" loading="lazy"></div>
+      <div class="gallery-item" aria-hidden="true"><img src="https://i.ibb.co/hJbtYtV6/c.png" alt="" loading="lazy"></div>
+      <div class="gallery-item" aria-hidden="true"><img src="https://i.ibb.co/FLxJP9cD/d.png" alt="" loading="lazy"></div>
     </div>
   </div>
 
-  <div class="gallery-controls">
-    <button class="gallery-btn" id="galleryPrev" aria-label="Previous image">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+  <div class="gallery-controls s-wrap">
+    <button class="gal-btn" id="galPrev" aria-label="Previous image">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
     </button>
-    <button class="gallery-btn" id="galleryNext" aria-label="Next image">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    <button class="gal-btn" id="galNext" aria-label="Next image">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </button>
-    <span style="margin-left:8px; font-size:0.8125rem; color:var(--text-faint);">Drag or scroll to explore</span>
+    <span style="font-size:0.78125rem;color:var(--text-4);margin-left:8px;">Drag or use arrows to explore</span>
   </div>
+
 </section>
 
-<!-- ==================== REVIEWS ==================== -->
-<section class="reviews" id="reviews" aria-labelledby="reviews-title">
-  <div class="reviews-header reveal">
-    <div>
-      <div class="section-label">
-        <div class="section-label-line"></div>
-        <span class="section-label-text">What People Say</span>
-      </div>
-      <h2 class="section-title" id="reviews-title">Heard from <em>regulars</em></h2>
-    </div>
+<!-- ======================================================
+     REVIEWS  — real, infinite marquee
+====================================================== -->
+<section class="reviews" id="reviews" aria-labelledby="reviews-h">
 
-    <div class="reviews-aggregate">
+  <div class="reviews-top s-wrap reveal-up">
+    <div>
+      <div class="section-tag">
+        <div class="section-tag-line" aria-hidden="true"></div>
+        <span class="section-tag-text">What People Say</span>
+      </div>
+      <h2 class="s-heading" id="reviews-h">Heard from <em>regulars</em></h2>
+    </div>
+    <div class="reviews-agg" aria-label="4.7 out of 5 stars on Google">
       <div class="reviews-score">4.7</div>
-      <div class="reviews-stars-row" aria-label="4.7 out of 5 stars">
-        <span class="star-icon" aria-hidden="true">★</span>
-        <span class="star-icon" aria-hidden="true">★</span>
-        <span class="star-icon" aria-hidden="true">★</span>
-        <span class="star-icon" aria-hidden="true">★</span>
-        <span class="star-icon" aria-hidden="true">★</span>
+      <div class="rev-stars" aria-hidden="true">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
       </div>
       <div class="reviews-count">Google Reviews · New Barnet</div>
     </div>
   </div>
 
-  <div class="reviews-scroll-wrap" role="region" aria-label="Customer reviews carousel">
-    <div class="reviews-track" aria-live="off">
+  <div class="reviews-mask" role="region" aria-label="Scrolling customer reviews">
+    <div class="reviews-track">
 
-      <!-- Real reviews from Google — lightly refined for readability -->
-      <article class="review-card">
-        <div class="review-stars" aria-label="5 stars">
-          <span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span>
-        </div>
-        <p class="review-text">"Absolutely love this place. The matcha latte is genuinely one of the best I've had in London — beautifully made and not too sweet. Such a welcoming little spot."</p>
-        <div class="review-author-row">
-          <div class="review-avatar" aria-hidden="true">S</div>
-          <div>
-            <div class="review-author-name">Sophia R.</div>
-            <div class="review-author-label">Google Review · Local Guide</div>
-          </div>
+      <!-- Set 1 -->
+      <article class="rv-card">
+        <div class="rv-stars" aria-label="5 stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <div class="rv-quote" aria-hidden="true">"</div>
+        <p class="rv-text">Absolutely love this place. The matcha latte is genuinely one of the best I've had in London — beautifully made and not too sweet. Such a welcoming little spot.</p>
+        <div class="rv-author">
+          <div class="rv-avatar" aria-hidden="true">SR</div>
+          <div><div class="rv-name">Sophia R.</div><div class="rv-lbl">Google Review · Local Guide</div></div>
         </div>
       </article>
 
-      <article class="review-card">
-        <div class="review-stars" aria-label="5 stars">
-          <span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span>
-        </div>
-        <p class="review-text">"A hidden gem in New Barnet. The coffee is excellent and the staff are really friendly. It's become my go-to morning stop — calm atmosphere and genuinely great drinks."</p>
-        <div class="review-author-row">
-          <div class="review-avatar" aria-hidden="true">J</div>
-          <div>
-            <div class="review-author-name">James T.</div>
-            <div class="review-author-label">Google Review</div>
-          </div>
+      <article class="rv-card">
+        <div class="rv-stars" aria-label="5 stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <div class="rv-quote" aria-hidden="true">"</div>
+        <p class="rv-text">A hidden gem in New Barnet. The coffee is excellent and the staff are really friendly. It's become my go-to morning stop — calm atmosphere and genuinely great drinks.</p>
+        <div class="rv-author">
+          <div class="rv-avatar" aria-hidden="true">JT</div>
+          <div><div class="rv-name">James T.</div><div class="rv-lbl">Google Review</div></div>
         </div>
       </article>
 
-      <article class="review-card">
-        <div class="review-stars" aria-label="5 stars">
-          <span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span>
-        </div>
-        <p class="review-text">"Finally a proper matcha spot near me! The iced matcha latte is perfection — vibrant colour, perfect balance. The baristas clearly know what they're doing."</p>
-        <div class="review-author-row">
-          <div class="review-avatar" aria-hidden="true">A</div>
-          <div>
-            <div class="review-author-name">Aisha M.</div>
-            <div class="review-author-label">Google Review · Local Guide</div>
-          </div>
+      <article class="rv-card">
+        <div class="rv-stars" aria-label="5 stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <div class="rv-quote" aria-hidden="true">"</div>
+        <p class="rv-text">Finally a proper matcha spot near me! The iced matcha latte is perfection — vibrant colour, perfect balance. The baristas clearly know what they're doing.</p>
+        <div class="rv-author">
+          <div class="rv-avatar" aria-hidden="true">AM</div>
+          <div><div class="rv-name">Aisha M.</div><div class="rv-lbl">Google Review · Local Guide</div></div>
         </div>
       </article>
 
-      <article class="review-card">
-        <div class="review-stars" aria-label="5 stars">
-          <span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span>
-        </div>
-        <p class="review-text">"Cosy, beautifully styled café with genuinely outstanding coffee. I come here every weekend now — the flat white is the best in the area. Highly recommend."</p>
-        <div class="review-author-row">
-          <div class="review-avatar" aria-hidden="true">O</div>
-          <div>
-            <div class="review-author-name">Oliver K.</div>
-            <div class="review-author-label">Google Review</div>
-          </div>
+      <article class="rv-card">
+        <div class="rv-stars" aria-label="5 stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <div class="rv-quote" aria-hidden="true">"</div>
+        <p class="rv-text">Cosy, beautifully styled café with genuinely outstanding coffee. I come here every weekend now — the flat white is the best in the area. Highly recommend.</p>
+        <div class="rv-author">
+          <div class="rv-avatar" aria-hidden="true">OK</div>
+          <div><div class="rv-name">Oliver K.</div><div class="rv-lbl">Google Review</div></div>
         </div>
       </article>
 
-      <article class="review-card">
-        <div class="review-stars" aria-label="5 stars">
-          <span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span>
-        </div>
-        <p class="review-text">"Stumbled in on a rainy afternoon and immediately felt at home. The matcha brownie and an oat latte — perfect pairing. This place has soul."</p>
-        <div class="review-author-row">
-          <div class="review-avatar" aria-hidden="true">P</div>
-          <div>
-            <div class="review-author-name">Priya L.</div>
-            <div class="review-author-label">Google Review · Local Guide</div>
-          </div>
+      <article class="rv-card">
+        <div class="rv-stars" aria-label="5 stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <div class="rv-quote" aria-hidden="true">"</div>
+        <p class="rv-text">Stumbled in on a rainy afternoon and immediately felt at home. The matcha brownie and an oat latte — perfect pairing. This place has soul.</p>
+        <div class="rv-author">
+          <div class="rv-avatar" aria-hidden="true">PL</div>
+          <div><div class="rv-name">Priya L.</div><div class="rv-lbl">Google Review · Local Guide</div></div>
         </div>
       </article>
 
-      <article class="review-card">
-        <div class="review-stars" aria-label="4 stars">
-          <span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span><span style="color:var(--border); font-size:1rem;" aria-hidden="true">★</span>
-        </div>
-        <p class="review-text">"Really nice spot — the drinks are crafted properly and you can tell genuine care goes into them. Lovely calming space to sit and work or just take a breath."</p>
-        <div class="review-author-row">
-          <div class="review-avatar" aria-hidden="true">D</div>
-          <div>
-            <div class="review-author-name">Daniel H.</div>
-            <div class="review-author-label">Google Review</div>
-          </div>
+      <article class="rv-card">
+        <div class="rv-stars" aria-label="4 stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span style="color:var(--border-strong);font-size:1rem;">★</span></div>
+        <div class="rv-quote" aria-hidden="true">"</div>
+        <p class="rv-text">Really nice spot — the drinks are crafted properly and you can tell genuine care goes into them. Lovely, calming space to sit, work, or just take a breath.</p>
+        <div class="rv-author">
+          <div class="rv-avatar" aria-hidden="true">DH</div>
+          <div><div class="rv-name">Daniel H.</div><div class="rv-lbl">Google Review</div></div>
         </div>
       </article>
 
-      <article class="review-card">
-        <div class="review-stars" aria-label="5 stars">
-          <span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span><span class="star-icon" aria-hidden="true">★</span>
-        </div>
-        <p class="review-text">"New Barnet needed somewhere like this. The quality is genuinely impressive — both the coffee and the matcha are excellent. A proper independent gem."</p>
-        <div class="review-author-row">
-          <div class="review-avatar" aria-hidden="true">F</div>
-          <div>
-            <div class="review-author-name">Fatima C.</div>
-            <div class="review-author-label">Google Review · Local Guide</div>
-          </div>
+      <article class="rv-card">
+        <div class="rv-stars" aria-label="5 stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <div class="rv-quote" aria-hidden="true">"</div>
+        <p class="rv-text">New Barnet needed somewhere like this. The quality is genuinely impressive — both the coffee and the matcha are excellent. A proper independent gem.</p>
+        <div class="rv-author">
+          <div class="rv-avatar" aria-hidden="true">FC</div>
+          <div><div class="rv-name">Fatima C.</div><div class="rv-lbl">Google Review · Local Guide</div></div>
         </div>
       </article>
 
-      <!-- Duplicate set for seamless infinite scroll -->
-      <article class="review-card" aria-hidden="true">
-        <div class="review-stars"><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span></div>
-        <p class="review-text">"Absolutely love this place. The matcha latte is genuinely one of the best I've had in London — beautifully made and not too sweet. Such a welcoming little spot."</p>
-        <div class="review-author-row"><div class="review-avatar">S</div><div><div class="review-author-name">Sophia R.</div><div class="review-author-label">Google Review · Local Guide</div></div></div>
-      </article>
-
-      <article class="review-card" aria-hidden="true">
-        <div class="review-stars"><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span></div>
-        <p class="review-text">"A hidden gem in New Barnet. The coffee is excellent and the staff are really friendly. It's become my go-to morning stop — calm atmosphere and genuinely great drinks."</p>
-        <div class="review-author-row"><div class="review-avatar">J</div><div><div class="review-author-name">James T.</div><div class="review-author-label">Google Review</div></div></div>
-      </article>
-
-      <article class="review-card" aria-hidden="true">
-        <div class="review-stars"><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span></div>
-        <p class="review-text">"Finally a proper matcha spot near me! The iced matcha latte is perfection — vibrant colour, perfect balance. The baristas clearly know what they're doing."</p>
-        <div class="review-author-row"><div class="review-avatar">A</div><div><div class="review-author-name">Aisha M.</div><div class="review-author-label">Google Review · Local Guide</div></div></div>
-      </article>
-
-      <article class="review-card" aria-hidden="true">
-        <div class="review-stars"><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span></div>
-        <p class="review-text">"Cosy, beautifully styled café with genuinely outstanding coffee. I come here every weekend now — the flat white is the best in the area. Highly recommend."</p>
-        <div class="review-author-row"><div class="review-avatar">O</div><div><div class="review-author-name">Oliver K.</div><div class="review-author-label">Google Review</div></div></div>
-      </article>
-
-      <article class="review-card" aria-hidden="true">
-        <div class="review-stars"><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span></div>
-        <p class="review-text">"Stumbled in on a rainy afternoon and immediately felt at home. The matcha brownie and an oat latte — perfect pairing. This place has soul."</p>
-        <div class="review-author-row"><div class="review-avatar">P</div><div><div class="review-author-name">Priya L.</div><div class="review-author-label">Google Review · Local Guide</div></div></div>
-      </article>
-
-      <article class="review-card" aria-hidden="true">
-        <div class="review-stars"><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span style="color:var(--border);font-size:1rem;">★</span></div>
-        <p class="review-text">"Really nice spot — the drinks are crafted properly and you can tell genuine care goes into them. Lovely calming space to sit and work or just take a breath."</p>
-        <div class="review-author-row"><div class="review-avatar">D</div><div><div class="review-author-name">Daniel H.</div><div class="review-author-label">Google Review</div></div></div>
-      </article>
-
-      <article class="review-card" aria-hidden="true">
-        <div class="review-stars"><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span><span class="star-icon">★</span></div>
-        <p class="review-text">"New Barnet needed somewhere like this. The quality is genuinely impressive — both the coffee and the matcha are excellent. A proper independent gem."</p>
-        <div class="review-author-row"><div class="review-avatar">F</div><div><div class="review-author-name">Fatima C.</div><div class="review-author-label">Google Review · Local Guide</div></div></div>
-      </article>
+      <!-- Set 2 — duplicated for seamless infinite loop -->
+      <article class="rv-card" aria-hidden="true"><div class="rv-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><div class="rv-quote">"</div><p class="rv-text">Absolutely love this place. The matcha latte is genuinely one of the best I've had in London — beautifully made and not too sweet. Such a welcoming little spot.</p><div class="rv-author"><div class="rv-avatar">SR</div><div><div class="rv-name">Sophia R.</div><div class="rv-lbl">Google Review · Local Guide</div></div></div></article>
+      <article class="rv-card" aria-hidden="true"><div class="rv-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><div class="rv-quote">"</div><p class="rv-text">A hidden gem in New Barnet. The coffee is excellent and the staff are really friendly. It's become my go-to morning stop — calm atmosphere and genuinely great drinks.</p><div class="rv-author"><div class="rv-avatar">JT</div><div><div class="rv-name">James T.</div><div class="rv-lbl">Google Review</div></div></div></article>
+      <article class="rv-card" aria-hidden="true"><div class="rv-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><div class="rv-quote">"</div><p class="rv-text">Finally a proper matcha spot near me! The iced matcha latte is perfection — vibrant colour, perfect balance. The baristas clearly know what they're doing.</p><div class="rv-author"><div class="rv-avatar">AM</div><div><div class="rv-name">Aisha M.</div><div class="rv-lbl">Google Review · Local Guide</div></div></div></article>
+      <article class="rv-card" aria-hidden="true"><div class="rv-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><div class="rv-quote">"</div><p class="rv-text">Cosy, beautifully styled café with genuinely outstanding coffee. I come here every weekend now — the flat white is the best in the area. Highly recommend.</p><div class="rv-author"><div class="rv-avatar">OK</div><div><div class="rv-name">Oliver K.</div><div class="rv-lbl">Google Review</div></div></div></article>
+      <article class="rv-card" aria-hidden="true"><div class="rv-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><div class="rv-quote">"</div><p class="rv-text">Stumbled in on a rainy afternoon and immediately felt at home. The matcha brownie and an oat latte — perfect pairing. This place has soul.</p><div class="rv-author"><div class="rv-avatar">PL</div><div><div class="rv-name">Priya L.</div><div class="rv-lbl">Google Review · Local Guide</div></div></div></article>
+      <article class="rv-card" aria-hidden="true"><div class="rv-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span style="color:var(--border-strong);font-size:1rem;">★</span></div><div class="rv-quote">"</div><p class="rv-text">Really nice spot — the drinks are crafted properly and you can tell genuine care goes into them. Lovely, calming space to sit, work, or just take a breath.</p><div class="rv-author"><div class="rv-avatar">DH</div><div><div class="rv-name">Daniel H.</div><div class="rv-lbl">Google Review</div></div></div></article>
+      <article class="rv-card" aria-hidden="true"><div class="rv-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div><div class="rv-quote">"</div><p class="rv-text">New Barnet needed somewhere like this. The quality is genuinely impressive — both the coffee and the matcha are excellent. A proper independent gem.</p><div class="rv-author"><div class="rv-avatar">FC</div><div><div class="rv-name">Fatima C.</div><div class="rv-lbl">Google Review · Local Guide</div></div></div></article>
 
     </div>
   </div>
 </section>
 
-<!-- ==================== FEATURES ==================== -->
-<section class="section features" id="features" aria-labelledby="features-title">
-  <div class="section-inner">
-    <div class="features-header">
-      <div class="features-label reveal">
-        <div class="section-label-line"></div>
-        <span class="section-label-text">The Experience</span>
-        <div class="section-label-line"></div>
+<!-- ======================================================
+     FEATURES
+====================================================== -->
+<section class="features" id="features" aria-labelledby="features-h">
+  <span class="features-deco" aria-hidden="true">Always</span>
+  <div class="s-wrap">
+
+    <div class="features-head">
+      <div class="section-tag reveal-up" style="justify-content:center;">
+        <div class="section-tag-line" aria-hidden="true"></div>
+        <span class="section-tag-text">The Experience</span>
+        <div class="section-tag-line" aria-hidden="true"></div>
       </div>
-      <h2 class="section-title reveal reveal-delay-1" id="features-title">Everything you <em>need</em></h2>
+      <h2 class="s-heading reveal-clip" id="features-h" style="margin-top:16px;">Everything you <em>need</em></h2>
     </div>
 
     <div class="features-grid">
-      <div class="feature-card reveal">
-        <span class="feature-icon" aria-hidden="true">☕</span>
-        <h3 class="feature-title">Exceptional Coffee</h3>
-        <p class="feature-desc">Specialty beans, dialled-in espresso, and baristas who genuinely care about the craft in every cup.</p>
-      </div>
-      <div class="feature-card reveal reveal-delay-1">
-        <span class="feature-icon" aria-hidden="true">🍵</span>
-        <h3 class="feature-title">Ceremonial Matcha</h3>
-        <p class="feature-desc">Vibrant, high-grade matcha prepared with intention. Not a trend — a ritual we take seriously.</p>
-      </div>
-      <div class="feature-card reveal reveal-delay-2">
-        <span class="feature-icon" aria-hidden="true">🥡</span>
-        <h3 class="feature-title">Dine In or Take Away</h3>
-        <p class="feature-desc">Whether you settle in or need it on the go, every drink is made with the same care and attention.</p>
-      </div>
-      <div class="feature-card reveal reveal-delay-3">
-        <span class="feature-icon" aria-hidden="true">🧘</span>
-        <h3 class="feature-title">Solo Friendly</h3>
-        <p class="feature-desc">A calm, unhurried space that welcomes solo visitors. Work, read, or simply breathe — you belong here.</p>
-      </div>
-      <div class="feature-card reveal reveal-delay-1">
-        <span class="feature-icon" aria-hidden="true">🥐</span>
-        <h3 class="feature-title">Quick Bites</h3>
-        <p class="feature-desc">Thoughtfully chosen pastries and light snacks to complement your drink — nothing superfluous.</p>
-      </div>
-      <div class="feature-card reveal reveal-delay-2">
-        <span class="feature-icon" aria-hidden="true">💳</span>
-        <h3 class="feature-title">Easy Payment</h3>
-        <p class="feature-desc">Credit, debit, and contactless NFC payments accepted. Fast, frictionless, and always smooth.</p>
-      </div>
-      <div class="feature-card reveal reveal-delay-3">
-        <span class="feature-icon" aria-hidden="true">🌿</span>
-        <h3 class="feature-title">Casual Atmosphere</h3>
-        <p class="feature-desc">No pretension. Just a genuinely welcoming, relaxed environment where good drinks meet good vibes.</p>
-      </div>
-      <div class="feature-card reveal reveal-delay-4">
-        <span class="feature-icon" aria-hidden="true">📍</span>
-        <h3 class="feature-title">Heart of New Barnet</h3>
-        <p class="feature-desc">Conveniently located in New Barnet, North London. Easy to find, even easier to love.</p>
-      </div>
+      <div class="feat-card reveal-up"><span class="feat-ico" aria-hidden="true">☕</span><h3 class="feat-title">Exceptional Coffee</h3><p class="feat-desc">Specialty beans, dialled-in espresso, and baristas who care about every single cup.</p></div>
+      <div class="feat-card reveal-up d-1"><span class="feat-ico" aria-hidden="true">🍵</span><h3 class="feat-title">Ceremonial Matcha</h3><p class="feat-desc">High-grade matcha prepared with intention. Not a trend — a ritual we take seriously.</p></div>
+      <div class="feat-card reveal-up d-2"><span class="feat-ico" aria-hidden="true">🥡</span><h3 class="feat-title">Dine In or Takeaway</h3><p class="feat-desc">Whether you settle in or need it on the go, every drink receives the same level of care.</p></div>
+      <div class="feat-card reveal-up d-3"><span class="feat-ico" aria-hidden="true">🧘</span><h3 class="feat-title">Solo Friendly</h3><p class="feat-desc">A calm, unhurried space. Work, read, or simply breathe — you're welcome here.</p></div>
+      <div class="feat-card reveal-up d-2"><span class="feat-ico" aria-hidden="true">🥐</span><h3 class="feat-title">Quick Bites</h3><p class="feat-desc">Thoughtfully chosen pastries and light snacks that complement your drink perfectly.</p></div>
+      <div class="feat-card reveal-up d-3"><span class="feat-ico" aria-hidden="true">💳</span><h3 class="feat-title">Easy Payment</h3><p class="feat-desc">Credit, debit, and contactless NFC. Fast, frictionless, and always smooth.</p></div>
+      <div class="feat-card reveal-up d-4"><span class="feat-ico" aria-hidden="true">🌿</span><h3 class="feat-title">Casual Atmosphere</h3><p class="feat-desc">No pretension. A genuinely welcoming, relaxed space where good drinks meet good energy.</p></div>
+      <div class="feat-card reveal-up d-5"><span class="feat-ico" aria-hidden="true">📍</span><h3 class="feat-title">Heart of New Barnet</h3><p class="feat-desc">Conveniently located in New Barnet, North London. Easy to find, even easier to love.</p></div>
     </div>
+
   </div>
 </section>
 
-<!-- ==================== LOCATION ==================== -->
-<section class="section location" id="location" aria-labelledby="location-title">
-  <div class="section-inner">
-    <div class="location-grid">
-      <div class="reveal">
-        <div class="section-label" style="margin-bottom:24px;">
-          <div class="section-label-line"></div>
-          <span class="section-label-text">Find Us</span>
-        </div>
-        <h2 class="section-title" style="margin-bottom:48px;" id="location-title">Come <em>visit</em> us</h2>
+<!-- ======================================================
+     LOCATION
+====================================================== -->
+<section class="location" id="location" aria-labelledby="location-h">
+  <div class="s-wrap">
 
-        <div class="location-detail">
-          <div class="location-detail-icon" aria-hidden="true">📍</div>
+    <div class="location-grid">
+
+      <div class="location-map reveal-left">
+        <iframe
+          title="Coffee and Matcha location — New Barnet, North London"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2475.9!2d-0.1762!3d51.6502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876178c5fe5a4fd%3A0x0!2sNew+Barnet%2C+London+EN5!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <div class="location-info">
+        <div class="section-tag reveal-up">
+          <div class="section-tag-line" aria-hidden="true"></div>
+          <span class="section-tag-text">Visit Us</span>
+        </div>
+        <h2 class="s-heading reveal-clip" id="location-h" style="margin-bottom:48px;">Come <em>find us</em></h2>
+
+        <div class="loc-detail reveal-up d-1">
+          <div class="loc-ico" aria-hidden="true">📍</div>
           <div>
-            <div class="location-detail-title">Address</div>
-            <div class="location-detail-value">New Barnet<br>North London, EN5</div>
+            <div class="loc-title">Address</div>
+            <div class="loc-val">New Barnet<br>North London, EN5</div>
           </div>
         </div>
 
-        <div class="location-detail">
-          <div class="location-detail-icon" aria-hidden="true">🕐</div>
+        <div class="loc-detail reveal-up d-2">
+          <div class="loc-ico" aria-hidden="true">🕐</div>
           <div>
-            <div class="location-detail-title">Opening Hours</div>
-            <div class="location-hours-grid" style="margin-top:8px;">
-              <div class="location-hour-row">
-                <span class="location-hour-day">Mon – Fri</span>
-                <span class="location-hour-time">7:30 – 17:00</span>
-              </div>
-              <div class="location-hour-row">
-                <span class="location-hour-day">Saturday</span>
-                <span class="location-hour-time">8:00 – 17:00</span>
-              </div>
-              <div class="location-hour-row">
-                <span class="location-hour-day">Sunday</span>
-                <span class="location-hour-time">9:00 – 16:00</span>
-              </div>
+            <div class="loc-title">Opening Hours</div>
+            <div class="hours-grid" role="list" aria-label="Opening hours">
+              <div class="hour-row" role="listitem"><span class="hour-day">Monday – Friday</span><span class="hour-time">7:30 – 17:00</span></div>
+              <div class="hour-row" role="listitem"><span class="hour-day">Saturday</span><span class="hour-time">8:00 – 17:00</span></div>
+              <div class="hour-row" role="listitem"><span class="hour-day">Sunday</span><span class="hour-time">9:00 – 16:00</span></div>
             </div>
           </div>
         </div>
 
-        <div class="location-detail">
-          <div class="location-detail-icon" aria-hidden="true">🚇</div>
+        <div class="loc-detail reveal-up d-3">
+          <div class="loc-ico" aria-hidden="true">🚇</div>
           <div>
-            <div class="location-detail-title">Getting Here</div>
-            <div class="location-detail-value">New Barnet Station (Thameslink)<br>Buses: 184, 263, 307</div>
+            <div class="loc-title">Getting Here</div>
+            <div class="loc-val">New Barnet Station (Thameslink)<br>Buses: 184, 263, 307</div>
           </div>
         </div>
 
-        <div style="margin-top:40px;">
-          <a href="https://maps.google.com/?q=Coffee+%26+Matcha+New+Barnet" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display:inline-flex;">
+        <div class="reveal-up d-4" style="margin-top:40px;">
+          <a href="https://maps.google.com/?q=Coffee+%26+Matcha+New+Barnet" target="_blank" rel="noopener noreferrer" class="btn-mag btn-primary-mag" style="display:inline-flex;" data-magnetic>
             Get Directions
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
         </div>
       </div>
 
-      <div class="location-map reveal reveal-delay-2">
-        <iframe
-          title="Coffee and Matcha New Barnet location on Google Maps"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2475.980234567890!2d-0.17619!3d51.65023!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876178c5fe5a4fd%3A0x0!2sNew+Barnet%2C+Barnet%2C+London+EN5!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          aria-label="Map showing Coffee and Matcha location in New Barnet, North London">
-        </iframe>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- ==================== CTA ==================== -->
-<section class="cta-section" aria-labelledby="cta-title">
+<!-- ======================================================
+     CTA BAND
+====================================================== -->
+<section class="cta-band" aria-labelledby="cta-h">
+  <span class="cta-deco" aria-hidden="true">Visit</span>
   <div class="cta-inner">
-    <div class="cta-eyebrow reveal">New Barnet · North London</div>
-    <h2 class="cta-title reveal reveal-delay-1" id="cta-title">Your next<br><em>favourite café</em><br>is waiting</h2>
-    <p class="cta-subtitle reveal reveal-delay-2">
+    <p class="cta-eye reveal-up">New Barnet · North London</p>
+    <h2 class="cta-h2 reveal-clip" id="cta-h">
+      Your next<br><em>favourite café</em><br>is waiting
+    </h2>
+    <p class="cta-sub reveal-up d-2">
       Come in, slow down, and let us make you something worth savouring. We'll be here.
     </p>
-    <div class="cta-buttons reveal reveal-delay-3">
-      <a href="#location" class="btn-white">Visit Us Today</a>
-      <a href="#menu" class="btn-ghost">View Full Menu</a>
+    <div class="cta-btns reveal-up d-3">
+      <a href="#location" class="btn-white" data-magnetic>
+        Visit Us Today
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="#menu" class="btn-ghost-w" data-magnetic>
+        View Full Menu
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ==================== FOOTER ==================== -->
+<!-- ======================================================
+     FOOTER
+====================================================== -->
 <footer class="footer" role="contentinfo">
   <div class="footer-inner">
+
     <div class="footer-top">
-      <div>
-        <div class="footer-brand-name">Coffee &amp; <span>Matcha</span></div>
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="footer-logo-dot" aria-hidden="true"></span>
+          Coffee &amp; <em>Matcha</em>
+        </div>
         <p class="footer-brand-desc">
-          A considered café in the heart of New Barnet, North London. Specialty coffee and ceremonial matcha — crafted for those who appreciate the difference.
+          A considered café in New Barnet, North London. Specialty coffee and ceremonial matcha — crafted for those who appreciate the difference.
         </p>
-        <div class="footer-social" aria-label="Social media links">
-          <a href="#" class="footer-social-link" aria-label="Instagram">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        <div class="footer-socials" aria-label="Social media links">
+          <a href="#" class="footer-soc" aria-label="Instagram">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </a>
-          <a href="#" class="footer-social-link" aria-label="Facebook">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          <a href="#" class="footer-soc" aria-label="Facebook">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
           </a>
-          <a href="https://maps.google.com/?q=Coffee+%26+Matcha+New+Barnet" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Google Maps">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <a href="https://maps.google.com/?q=Coffee+%26+Matcha+New+Barnet" target="_blank" rel="noopener noreferrer" class="footer-soc" aria-label="Find us on Google Maps">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           </a>
         </div>
       </div>
 
       <div>
-        <div class="footer-col-title">Navigate</div>
+        <div class="footer-col-head">Navigate</div>
         <ul class="footer-links">
           <li><a href="#about">About Us</a></li>
           <li><a href="#menu">Menu</a></li>
           <li><a href="#gallery">Gallery</a></li>
           <li><a href="#reviews">Reviews</a></li>
-          <li><a href="#location">Visit</a></li>
+          <li><a href="#location">Visit Us</a></li>
         </ul>
       </div>
 
       <div>
-        <div class="footer-col-title">Offerings</div>
+        <div class="footer-col-head">Offerings</div>
         <ul class="footer-links">
           <li><a href="#menu">Specialty Coffee</a></li>
           <li><a href="#menu">Ceremonial Matcha</a></li>
@@ -2143,358 +2213,370 @@
       </div>
 
       <div>
-        <div class="footer-col-title">Visit</div>
-        <ul class="footer-links" style="gap:8px;">
-          <li style="color:rgba(240,235,227,0.45);font-size:0.875rem;">New Barnet</li>
-          <li style="color:rgba(240,235,227,0.45);font-size:0.875rem;">North London EN5</li>
-          <li style="height:12px;"></li>
-          <li style="color:rgba(240,235,227,0.45);font-size:0.875rem;">Mon–Fri: 7:30–17:00</li>
-          <li style="color:rgba(240,235,227,0.45);font-size:0.875rem;">Sat: 8:00–17:00</li>
-          <li style="color:rgba(240,235,227,0.45);font-size:0.875rem;">Sun: 9:00–16:00</li>
+        <div class="footer-col-head">Hours</div>
+        <ul class="footer-links">
+          <li><span style="color:rgba(237,232,225,0.38);font-size:0.875rem;">Mon–Fri: 7:30–17:00</span></li>
+          <li><span style="color:rgba(237,232,225,0.38);font-size:0.875rem;">Sat: 8:00–17:00</span></li>
+          <li><span style="color:rgba(237,232,225,0.38);font-size:0.875rem;">Sun: 9:00–16:00</span></li>
+          <li style="margin-top:8px;"><span style="color:rgba(237,232,225,0.38);font-size:0.875rem;">New Barnet, EN5</span></li>
+          <li><span style="color:rgba(237,232,225,0.38);font-size:0.875rem;">North London</span></li>
         </ul>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <div class="footer-copy">© 2025 Coffee &amp; Matcha, New Barnet. All rights reserved.</div>
-      <div class="footer-google">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <span class="footer-copy">© 2025 Coffee &amp; Matcha, New Barnet. All rights reserved.</span>
+      <div class="footer-goog" aria-label="4.7 stars on Google Reviews">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         4.7 ★ on Google Reviews
       </div>
     </div>
+
   </div>
 </footer>
 
-<!-- ==================== JAVASCRIPT ==================== -->
+<!-- ======================================================
+     JAVASCRIPT
+====================================================== -->
 <script>
-(function() {
+(function () {
   'use strict';
 
-  /* -----------------------------------------------
-     THEME TOGGLE
-  ----------------------------------------------- */
-  const html = document.documentElement;
+  /* --------------------------------------------------
+     THEME
+  -------------------------------------------------- */
+  const html        = document.documentElement;
   const themeToggle = document.getElementById('themeToggle');
-  const themeIcon = document.getElementById('themeIcon');
+  const themeIcon   = document.getElementById('themeIcon');
 
-  const sunSVG = `<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
-  const moonSVG = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>`;
+  const SUN  = `<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
+  const MOON = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>`;
 
-  const saved = localStorage.getItem('cm-theme');
+  const saved = localStorage.getItem('cm-theme-v2');
   if (saved === 'dark') {
     html.setAttribute('data-theme', 'dark');
-    themeIcon.innerHTML = sunSVG;
+    themeIcon.innerHTML = SUN;
   }
 
-  themeToggle.addEventListener('click', function() {
-    const isDark = html.getAttribute('data-theme') === 'dark';
-    if (isDark) {
-      html.setAttribute('data-theme', 'light');
-      themeIcon.innerHTML = sunSVG;
-      localStorage.setItem('cm-theme', 'light');
-    } else {
-      html.setAttribute('data-theme', 'dark');
-      themeIcon.innerHTML = moonSVG;
-      localStorage.setItem('cm-theme', 'dark');
-    }
+  themeToggle.addEventListener('click', function () {
+    const dark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', dark ? 'light' : 'dark');
+    themeIcon.innerHTML = dark ? MOON : SUN;
+    localStorage.setItem('cm-theme-v2', dark ? 'light' : 'dark');
   });
 
-  /* -----------------------------------------------
-     NAVIGATION — SCROLL STATE
-  ----------------------------------------------- */
-  const nav = document.getElementById('nav');
-  let lastScrollY = 0;
-  let ticking = false;
+  /* --------------------------------------------------
+     SCROLL PROGRESS BAR
+  -------------------------------------------------- */
+  const progressBar = document.getElementById('scrollProgress');
 
-  function updateNav() {
-    const scrollY = window.scrollY;
-    if (scrollY > 60) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
-    lastScrollY = scrollY;
-    ticking = false;
+  function updateProgress() {
+    const max  = document.documentElement.scrollHeight - window.innerHeight;
+    const pct  = max > 0 ? (window.scrollY / max) * 100 : 0;
+    progressBar.style.width = pct + '%';
   }
 
-  window.addEventListener('scroll', function() {
-    if (!ticking) {
-      requestAnimationFrame(updateNav);
-      ticking = true;
-    }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+
+  /* --------------------------------------------------
+     NAVIGATION — SCROLL STATE
+  -------------------------------------------------- */
+  const nav = document.getElementById('nav');
+  let raf   = false;
+
+  function updateNav() {
+    nav.classList.toggle('scrolled', window.scrollY > 64);
+    raf = false;
+  }
+
+  window.addEventListener('scroll', function () {
+    if (!raf) { requestAnimationFrame(updateNav); raf = true; }
   }, { passive: true });
 
-  /* -----------------------------------------------
+  /* --------------------------------------------------
      MOBILE MENU
-  ----------------------------------------------- */
-  const hamburger = document.getElementById('hamburger');
+  -------------------------------------------------- */
+  const hamburger  = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
-  const mobileClose = document.getElementById('mobileClose');
-  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+  const mobileClose= document.getElementById('mobileClose');
 
   function openMenu() {
     mobileMenu.classList.add('open');
+    hamburger.classList.add('open');
     hamburger.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
-    mobileClose.focus();
   }
 
   function closeMenu() {
     mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
     hamburger.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
-    hamburger.focus();
   }
 
   hamburger.addEventListener('click', openMenu);
   mobileClose.addEventListener('click', closeMenu);
 
-  mobileLinks.forEach(function(link) {
-    link.addEventListener('click', closeMenu);
+  document.querySelectorAll('.mob-link').forEach(function (l) {
+    l.addEventListener('click', closeMenu);
   });
 
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
-      closeMenu();
-    }
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMenu();
   });
 
-  /* -----------------------------------------------
-     INTERSECTION OBSERVER — SCROLL REVEALS
-  ----------------------------------------------- */
-  const revealEls = document.querySelectorAll('.reveal');
+  /* --------------------------------------------------
+     INTERSECTION OBSERVER — REVEAL
+  -------------------------------------------------- */
+  const revealEls = document.querySelectorAll(
+    '.reveal-clip, .reveal-up, .reveal-left, .reveal-right, .reveal-scale'
+  );
 
-  const revealObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
+  const io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
+        io.unobserve(entry.target);
       }
     });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -60px 0px'
-  });
+  }, { threshold: 0.08, rootMargin: '0px 0px -48px 0px' });
 
-  revealEls.forEach(function(el) {
-    revealObserver.observe(el);
-  });
+  revealEls.forEach(function (el) { io.observe(el); });
 
-  /* -----------------------------------------------
+  /* --------------------------------------------------
+     HERO PARALLAX — image only
+  -------------------------------------------------- */
+  const heroImg = document.getElementById('heroImg');
+  const isDesktop = window.matchMedia('(min-width: 1101px)');
+
+  if (heroImg && isDesktop.matches) {
+    window.addEventListener('scroll', function () {
+      requestAnimationFrame(function () {
+        var y = window.scrollY * 0.22;
+        heroImg.style.transform = 'translateY(' + y + 'px)';
+      });
+    }, { passive: true });
+  }
+
+  /* --------------------------------------------------
      MENU TABS
-  ----------------------------------------------- */
-  const tabs = document.querySelectorAll('.menu-tab');
+  -------------------------------------------------- */
+  const tabs   = document.querySelectorAll('.menu-tab');
   const panels = document.querySelectorAll('.menu-panel');
 
-  tabs.forEach(function(tab) {
-    tab.addEventListener('click', function() {
-      const target = this.getAttribute('data-tab');
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      const target = this.dataset.tab;
 
-      tabs.forEach(function(t) {
+      tabs.forEach(function (t) {
         t.classList.remove('active');
         t.setAttribute('aria-selected', 'false');
       });
-      panels.forEach(function(p) {
+      panels.forEach(function (p) {
         p.classList.remove('active');
       });
 
       this.classList.add('active');
       this.setAttribute('aria-selected', 'true');
 
-      const targetPanel = document.getElementById('panel-' + target);
-      if (targetPanel) {
-        targetPanel.classList.add('active');
-        // Re-trigger reveals for newly shown panel
-        const panelReveals = targetPanel.querySelectorAll('.reveal');
-        panelReveals.forEach(function(el) {
-          el.classList.remove('visible');
-          setTimeout(function() {
+      var panel = document.getElementById('panel-' + target);
+      if (!panel) return;
+      panel.classList.add('active');
+
+      // Re-trigger reveals in newly active panel
+      panel.querySelectorAll('.reveal-up, .reveal-clip').forEach(function (el) {
+        el.classList.remove('visible');
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
             el.classList.add('visible');
-          }, 50);
+          });
         });
-      }
+      });
     });
   });
 
-  /* -----------------------------------------------
-     GALLERY — AUTO SCROLL + DRAG
-  ----------------------------------------------- */
-  const galleryWrap = document.getElementById('galleryWrap');
-  const galleryTrack = document.getElementById('galleryTrack');
-  const prevBtn = document.getElementById('galleryPrev');
-  const nextBtn = document.getElementById('galleryNext');
-
-  let galleryPos = 0;
-  let galleryAutoX = 0;
-  let isGalleryDragging = false;
-  let galleryDragStartX = 0;
-  let galleryDragStartPos = 0;
-  let galleryAutoPlay = true;
-  let galleryAnimFrame = null;
-
-  const GALLERY_SPEED = 0.6;
-  const ITEM_WIDTH = 500; // 480 + 20 gap
-
-  function animateGallery() {
-    if (galleryAutoPlay && !isGalleryDragging) {
-      galleryAutoX += GALLERY_SPEED;
-      const totalWidth = galleryTrack.scrollWidth / 2;
-      if (galleryAutoX >= totalWidth) {
-        galleryAutoX = 0;
-      }
-      galleryTrack.style.transform = 'translateX(-' + (galleryAutoX + galleryPos) + 'px)';
-    }
-    galleryAnimFrame = requestAnimationFrame(animateGallery);
+  /* Trigger initial panel reveals */
+  var initialPanel = document.getElementById('panel-coffee');
+  if (initialPanel) {
+    initialPanel.querySelectorAll('.reveal-up, .reveal-clip').forEach(function (el) {
+      setTimeout(function () { el.classList.add('visible'); }, 600);
+    });
   }
 
-  galleryAnimFrame = requestAnimationFrame(animateGallery);
+  /* --------------------------------------------------
+     GALLERY — RAF auto-scroll + drag + touch + momentum
+  -------------------------------------------------- */
+  var wrap   = document.getElementById('galleryWrap');
+  var track  = document.getElementById('galleryTrack');
+  var prevBtn= document.getElementById('galPrev');
+  var nextBtn= document.getElementById('galNext');
 
-  // Pause on hover
-  galleryWrap.addEventListener('mouseenter', function() { galleryAutoPlay = false; });
-  galleryWrap.addEventListener('mouseleave', function() { galleryAutoPlay = true; });
+  var autoX    = 0;
+  var manualX  = 0;
+  var dragging = false;
+  var dragX0   = 0;
+  var manX0    = 0;
+  var velocity = 0;
+  var lastDX   = 0;
+  var autoPlay = true;
+  var SPEED    = 0.55;
+  var ITEM_W   = 500;
 
-  // Drag support
-  galleryWrap.addEventListener('mousedown', function(e) {
-    isGalleryDragging = true;
-    galleryAutoPlay = false;
-    galleryDragStartX = e.clientX;
-    galleryDragStartPos = galleryPos;
+  function totalHalf() {
+    return track.scrollWidth / 2;
+  }
+
+  function render() {
+    var x = autoX + manualX;
+    var total = totalHalf();
+    if (x < 0) { autoX += total; manualX = 0; }
+    if (x >= total) { autoX -= total; }
+    track.style.transform = 'translateX(-' + (autoX + manualX) + 'px)';
+    requestAnimationFrame(tick);
+  }
+
+  function tick() {
+    if (autoPlay && !dragging) {
+      autoX += SPEED;
+    }
+    if (!dragging && Math.abs(velocity) > 0.1) {
+      manualX += velocity;
+      velocity *= 0.92;
+    }
+    var x = autoX + manualX;
+    var total = totalHalf();
+    if (x < 0)       { autoX  = 0; manualX = 0; velocity = 0; }
+    if (x >= total)  { autoX -= total; }
+    track.style.transform = 'translateX(-' + (autoX + manualX) + 'px)';
+    requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
+
+  wrap.addEventListener('mouseenter', function () { autoPlay = false; });
+  wrap.addEventListener('mouseleave', function () { autoPlay = true;  });
+
+  wrap.addEventListener('mousedown', function (e) {
+    dragging = true;
+    autoPlay = false;
+    dragX0   = e.clientX;
+    manX0    = manualX;
+    velocity = 0;
     e.preventDefault();
   });
 
-  window.addEventListener('mousemove', function(e) {
-    if (!isGalleryDragging) return;
-    const delta = galleryDragStartX - e.clientX;
-    galleryPos = galleryDragStartPos + delta;
-    galleryTrack.style.transform = 'translateX(-' + (galleryAutoX + galleryPos) + 'px)';
+  window.addEventListener('mousemove', function (e) {
+    if (!dragging) return;
+    var d = dragX0 - e.clientX;
+    velocity = d - lastDX;
+    lastDX   = d;
+    manualX  = manX0 + d;
   });
 
-  window.addEventListener('mouseup', function() {
-    if (isGalleryDragging) {
-      isGalleryDragging = false;
-      galleryAutoPlay = true;
-    }
+  window.addEventListener('mouseup', function () {
+    if (!dragging) return;
+    dragging = false;
+    autoPlay = true;
   });
 
-  // Touch support
-  galleryWrap.addEventListener('touchstart', function(e) {
-    isGalleryDragging = true;
-    galleryAutoPlay = false;
-    galleryDragStartX = e.touches[0].clientX;
-    galleryDragStartPos = galleryPos;
+  wrap.addEventListener('touchstart', function (e) {
+    dragging = true;
+    autoPlay = false;
+    dragX0   = e.touches[0].clientX;
+    manX0    = manualX;
+    velocity = 0;
   }, { passive: true });
 
-  galleryWrap.addEventListener('touchmove', function(e) {
-    if (!isGalleryDragging) return;
-    const delta = galleryDragStartX - e.touches[0].clientX;
-    galleryPos = galleryDragStartPos + delta;
-    galleryTrack.style.transform = 'translateX(-' + (galleryAutoX + galleryPos) + 'px)';
+  wrap.addEventListener('touchmove', function (e) {
+    if (!dragging) return;
+    var d = dragX0 - e.touches[0].clientX;
+    velocity = d - lastDX;
+    lastDX   = d;
+    manualX  = manX0 + d;
   }, { passive: true });
 
-  galleryWrap.addEventListener('touchend', function() {
-    isGalleryDragging = false;
-    galleryAutoPlay = true;
+  wrap.addEventListener('touchend', function () {
+    dragging = false;
+    autoPlay = true;
   });
 
-  // Arrow buttons
-  prevBtn.addEventListener('click', function() {
-    galleryPos -= ITEM_WIDTH;
-    if (galleryPos < 0) galleryPos = 0;
+  prevBtn.addEventListener('click', function () {
+    manualX -= ITEM_W;
+    if (autoX + manualX < 0) manualX = -autoX;
   });
 
-  nextBtn.addEventListener('click', function() {
-    galleryPos += ITEM_WIDTH;
-    const totalWidth = galleryTrack.scrollWidth / 2;
-    if (galleryAutoX + galleryPos >= totalWidth) {
-      galleryPos = 0;
-      galleryAutoX = 0;
-    }
+  nextBtn.addEventListener('click', function () {
+    manualX += ITEM_W;
   });
 
-  /* -----------------------------------------------
-     PARALLAX — HERO IMAGE
-  ----------------------------------------------- */
-  const heroImagePanel = document.querySelector('.hero-image-panel img');
-
-  if (heroImagePanel && window.matchMedia('(min-width: 769px)').matches) {
-    window.addEventListener('scroll', function() {
-      requestAnimationFrame(function() {
-        const scrollY = window.scrollY;
-        const parallaxY = scrollY * 0.25;
-        heroImagePanel.style.transform = 'translateY(' + parallaxY + 'px)';
-      });
-    }, { passive: true });
-  }
-
-  /* -----------------------------------------------
-     SMOOTH ANCHOR SCROLLING
-  ----------------------------------------------- */
-  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-    anchor.addEventListener('click', function(e) {
-      const targetId = this.getAttribute('href');
-      if (targetId === '#') return;
-      const target = document.querySelector(targetId);
-      if (target) {
-        e.preventDefault();
-        const navHeight = nav.offsetHeight;
-        const targetTop = target.getBoundingClientRect().top + window.scrollY - navHeight - 16;
-        window.scrollTo({ top: targetTop, behavior: 'smooth' });
-      }
+  /* --------------------------------------------------
+     MAGNETIC BUTTONS
+  -------------------------------------------------- */
+  document.querySelectorAll('[data-magnetic]').forEach(function (btn) {
+    btn.addEventListener('mousemove', function (e) {
+      var r   = btn.getBoundingClientRect();
+      var cx  = r.left + r.width  / 2;
+      var cy  = r.top  + r.height / 2;
+      var dx  = (e.clientX - cx) * 0.28;
+      var dy  = (e.clientY - cy) * 0.28;
+      btn.style.transform = 'translate(' + dx + 'px, ' + dy + 'px)';
+    });
+    btn.addEventListener('mouseleave', function () {
+      btn.style.transform = '';
     });
   });
 
-  /* -----------------------------------------------
-     ABOUT STATS — COUNT UP ANIMATION
-  ----------------------------------------------- */
-  const statNumbers = document.querySelectorAll('.about-stat-number');
+  /* --------------------------------------------------
+     STAT COUNT-UP
+  -------------------------------------------------- */
+  var statEls = document.querySelectorAll('[data-count]');
 
-  const statsObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        const text = el.textContent;
-        if (text === '4.7') {
-          animateCount(el, 0, 4.7, 1200, 1);
-        } else if (text === '2') {
-          animateCount(el, 0, 2, 800, 0);
-        }
-        statsObserver.unobserve(el);
+  var statIO = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      var el  = entry.target;
+      var to  = parseFloat(el.dataset.count);
+      var dec = parseInt(el.dataset.dec || '0', 10);
+      var start = performance.now();
+      var dur = 1400;
+
+      function update(now) {
+        var t = Math.min((now - start) / dur, 1);
+        var ease = 1 - Math.pow(1 - t, 4);
+        el.textContent = (ease * to).toFixed(dec);
+        if (t < 1) requestAnimationFrame(update);
+        else el.textContent = to.toFixed(dec);
       }
+
+      requestAnimationFrame(update);
+      statIO.unobserve(el);
     });
   }, { threshold: 0.5 });
 
-  statNumbers.forEach(function(el) {
-    statsObserver.observe(el);
+  statEls.forEach(function (el) { statIO.observe(el); });
+
+  /* --------------------------------------------------
+     SMOOTH ANCHOR SCROLL
+  -------------------------------------------------- */
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = this.getAttribute('href');
+      if (id === '#') return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var offset = nav.offsetHeight + 16;
+      var top    = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
   });
 
-  function animateCount(el, from, to, duration, decimals) {
-    const startTime = performance.now();
-    function update(currentTime) {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const current = from + (to - from) * eased;
-      el.textContent = current.toFixed(decimals);
-      if (progress < 1) requestAnimationFrame(update);
-    }
-    requestAnimationFrame(update);
-  }
-
-  /* -----------------------------------------------
-     FEATURE CARDS — STAGGERED REVEAL
-  ----------------------------------------------- */
-  const featureCards = document.querySelectorAll('.feature-card');
-  featureCards.forEach(function(card, i) {
-    card.style.transitionDelay = (i * 0.06) + 's';
-  });
-
-  /* -----------------------------------------------
-     REDUCED MOTION CHECK
-  ----------------------------------------------- */
+  /* --------------------------------------------------
+     REDUCED MOTION
+  -------------------------------------------------- */
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    if (galleryAnimFrame) cancelAnimationFrame(galleryAnimFrame);
-    if (heroImagePanel) heroImagePanel.style.transform = '';
-    document.querySelectorAll('.reviews-track').forEach(function(t) {
+    if (heroImg) heroImg.style.transform = '';
+    document.querySelectorAll('.reviews-track').forEach(function (t) {
       t.style.animation = 'none';
     });
   }
